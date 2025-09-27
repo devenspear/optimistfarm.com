@@ -32,6 +32,50 @@ export default function Home() {
   const [isIOS, setIsIOS] = useState(false)
   const [isAndroid, setIsAndroid] = useState(false)
 
+  // Structured data for SEO
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Optimist Farm",
+    "description": "A magical digital library featuring interactive children's books and educational content",
+    "url": "https://www.optimistfarm.com",
+    "logo": "https://www.optimistfarm.com/OptiFarm-logoTest.png",
+    "sameAs": [],
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://www.optimistfarm.com/search?q={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    },
+    "mainEntity": {
+      "@type": "EducationalOrganization",
+      "name": "Optimist Farm",
+      "description": "Digital library providing interactive children's books and educational content",
+      "url": "https://www.optimistfarm.com",
+      "logo": "https://www.optimistfarm.com/OptiFarm-logoTest.png",
+      "educationalCredentialAwarded": "Digital Literacy",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Children's Books and Educational Content",
+        "itemListElement": [
+          {
+            "@type": "Book",
+            "name": "Bunny's Thank-You Garden",
+            "description": "A magical story about gratitude and friendship",
+            "genre": "Children's Literature",
+            "audience": {
+              "@type": "PeopleAudience",
+              "suggestedMinAge": 3,
+              "suggestedMaxAge": 8
+            }
+          }
+        ]
+      }
+    }
+  }
+
   useEffect(() => {
     const checkDevice = () => {
       const userAgent = navigator.userAgent
@@ -91,6 +135,14 @@ export default function Home() {
     }`} style={{
       minHeight: isIOS ? 'calc(var(--vh, 1vh) * 100)' : '100vh'
     }}>
+      {/* Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData),
+        }}
+      />
+
       <div className="min-h-screen bg-orange-50">
 
         {/* Header */}

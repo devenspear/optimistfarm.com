@@ -1,0 +1,24 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://www.optimistfarm.com/sitemap.xml
+
+# Allow crawling of all content
+Allow: /books/
+Allow: /admin/
+Allow: /api/
+
+# Block unnecessary files
+Disallow: /_next/
+Disallow: /api/internal/
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+
+# Additional directives for better SEO
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
