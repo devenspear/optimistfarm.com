@@ -114,13 +114,13 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <div className="text-8xl mb-6">📚🌱</div>
-              <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-                Welcome to{' '}
-                <span className="bg-gradient-to-r from-emerald-500 to-blue-500 dark:from-emerald-400 dark:to-blue-400 bg-clip-text text-transparent">
-                  Optimist Farm
-                </span>
-              </h2>
+              <div className="mb-8">
+                <img
+                  src="/OptiFarm-logoTest.png"
+                  alt="Optimist Farm Logo"
+                  className="mx-auto h-48 md:h-60 w-auto"
+                />
+              </div>
               <p className="text-xl text-gray-700 mb-8 leading-relaxed">
                 A magical digital library where stories come to life. Perfect for family reading time
                 on your iPad or computer, featuring interactive books that inspire wonder and learning.
