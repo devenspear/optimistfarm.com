@@ -23,4 +23,90 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  /* iOS optimization: prevent bounce scrolling */
+  overscroll-behavior: none;
+  /* Android optimization: smooth scrolling */
+  scroll-behavior: smooth;
+}
+
+/* iOS-specific optimizations */
+.ios {
+  /* Fix iOS Safari address bar issues */
+  height: calc(var(--vh, 1vh) * 100);
+  /* Prevent zoom on input focus */
+  user-select: none;
+  -webkit-user-select: none;
+  /* Hardware acceleration */
+  -webkit-transform: translateZ(0);
+  /* Smooth scrolling */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Android-specific optimizations */
+.android {
+  /* Smooth scrolling for Android Chrome */
+  scroll-behavior: smooth;
+  /* Better touch response */
+  touch-action: manipulation;
+}
+
+/* Mobile-first optimizations */
+.mobile-optimized {
+  /* Better touch targets */
+  --touch-target-size: 44px;
+}
+
+.mobile-optimized .touch-manipulation {
+  touch-action: manipulation;
+  min-height: var(--touch-target-size);
+  min-width: var(--touch-target-size);
+}
+
+/* Improve mobile performance */
+.mobile-optimized img {
+  /* Prevent layout shift */
+  display: block;
+  /* Better image rendering on mobile */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: optimize-contrast;
+}
+
+/* Fix mobile viewport issues */
+@supports (height: 100dvh) {
+  .ios {
+    height: 100dvh;
+  }
+}
+
+/* Reduce animations on mobile for better performance */
+@media (prefers-reduced-motion: reduce) {
+  .mobile-optimized * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Mobile-specific hover states */
+@media (hover: none) {
+  .mobile-optimized .hover\:bg-white\/80:hover {
+    background-color: rgb(255 255 255 / 0.6);
+  }
+}
+
+/* Better focus states for mobile */
+.mobile-optimized button:focus,
+.mobile-optimized a:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Optimize for notched devices */
+@supports (padding: max(0px)) {
+  .ios {
+    padding-top: max(env(safe-area-inset-top), 0px);
+    padding-bottom: max(env(safe-area-inset-bottom), 0px);
+    padding-left: max(env(safe-area-inset-left), 0px);
+    padding-right: max(env(safe-area-inset-right), 0px);
+  }
 }

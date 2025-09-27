@@ -1,0 +1,40 @@
+{
+  "name": "Optimist Farm - Digital Library",
+  "short_name": "Optimist Farm",
+  "description": "A magical digital library where stories come to life",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fef7ed",
+  "theme_color": "#10b981",
+  "orientation": "portrait-primary",
+  "categories": ["books", "education", "kids"],
+  "icons": [
+    {
+      "src": "/OptiFarm-logoTest.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/OptiFarm-logoTest.png",
+      "sizes": "540x720",
+      "type": "image/png"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Children's Books",
+      "short_name": "Books",
+      "description": "Browse children's books",
+      "url": "/#books",
+      "icons": [
+        {
+          "src": "/OptiFarm-logoTest.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ]
+}

@@ -21,8 +21,39 @@ const baloo = Baloo_2({
 });
 
 export const metadata: Metadata = {
-  title: "Optimus Farm - Interactive Digital Library",
-  description: "A magical digital library featuring interactive children's books, adult content, and merchandise. Perfect for family reading time on iPad and desktop.",
+  title: "Optimist Farm - Interactive Digital Library",
+  description: "A magical digital library featuring interactive children's books, adult content, and merchandise. Perfect for family reading time on mobile, tablet and desktop.",
+  keywords: "children's books, digital library, interactive stories, mobile reading, educational content",
+  authors: [{ name: "Optimist Farm" }],
+  creator: "Optimist Farm",
+  publisher: "Optimist Farm",
+  metadataBase: new URL('https://www.optimistfarm.com'),
+  openGraph: {
+    title: "Optimist Farm - Interactive Digital Library",
+    description: "A magical digital library where stories come to life",
+    url: "https://www.optimistfarm.com",
+    siteName: "Optimist Farm",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Optimist Farm - Interactive Digital Library",
+    description: "A magical digital library where stories come to life",
+  },
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: false,
+  },
+  themeColor: "#10b981",
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Optimist Farm",
+  },
 };
 
 export default function RootLayout({
