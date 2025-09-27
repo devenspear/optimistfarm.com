@@ -33,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${bubblegumSans.variable} ${fredoka.variable} ${baloo.variable} font-baloo antialiased`}
+        className={`${bubblegumSans.variable} ${fredoka.variable} ${baloo.variable} font-bubblegum antialiased`}
       >
         {children}
       </body>
