@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Moon, Sun, Tablet, Monitor } from 'lucide-react'
+import { Check, Heart, ChevronLeft, ChevronRight } from 'lucide-react'
 import Link from 'next/link'
 
 const books = [
@@ -16,64 +16,22 @@ const books = [
   }
 ]
 
-const adultBooks = [
-  { id: 'coming-soon-1', title: 'Coming Soon', description: 'Adult book placeholder', category: 'adult' },
-  { id: 'coming-soon-2', title: 'Coming Soon', description: 'Adult book placeholder', category: 'adult' }
-]
-
-const merchandise = [
-  { id: 'plushies', title: 'Plush Toys', description: 'Soft and cuddly friends', category: 'merchandise' },
-  { id: 'books', title: 'Physical Books', description: 'Beautiful printed editions', category: 'merchandise' },
-  { id: 'accessories', title: 'Accessories', description: 'Fun reading accessories', category: 'merchandise' }
-]
-
-export default function Home() {
+export default function Concept1() {
   const [isMobile, setIsMobile] = useState(false)
-  const [isIOS, setIsIOS] = useState(false)
-  const [isAndroid, setIsAndroid] = useState(false)
+  const [currentSlide, setCurrentSlide] = useState(0)
 
-  // Structured data for SEO
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Optimist Farm",
-    "description": "A magical digital library featuring interactive children's books and educational content",
-    "url": "https://www.optimistfarm.com",
-    "logo": "https://www.optimistfarm.com/OptiFarm-logoTest.png",
-    "sameAs": [],
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": {
-        "@type": "EntryPoint",
-        "urlTemplate": "https://www.optimistfarm.com/search?q={search_term_string}"
-      },
-      "query-input": "required name=search_term_string"
-    },
-    "mainEntity": {
-      "@type": "EducationalOrganization",
-      "name": "Optimist Farm",
-      "description": "Digital library providing interactive children's books and educational content",
-      "url": "https://www.optimistfarm.com",
-      "logo": "https://www.optimistfarm.com/OptiFarm-logoTest.png",
-      "educationalCredentialAwarded": "Digital Literacy",
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Children's Books and Educational Content",
-        "itemListElement": [
-          {
-            "@type": "Book",
-            "name": "Bunny's Thank-You Garden",
-            "description": "A magical story about gratitude and friendship",
-            "genre": "Children's Literature",
-            "audience": {
-              "@type": "PeopleAudience",
-              "suggestedMinAge": 3,
-              "suggestedMaxAge": 8
-            }
-          }
-        ]
-      }
-    }
+  // Create array with 1 real book + 2 coming soon placeholders
+  const allBooks = [...books,
+    { id: 'coming-soon-1', title: 'Coming Soon', description: 'More magical stories on the way', isComingSoon: true },
+    { id: 'coming-soon-2', title: 'Coming Soon', description: 'More magical stories on the way', isComingSoon: true }
+  ]
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % allBooks.length)
+  }
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + allBooks.length) % allBooks.length)
   }
 
   useEffect(() => {
@@ -84,8 +42,6 @@ export default function Home() {
       const isAndroidDevice = /Android/i.test(userAgent)
 
       setIsMobile(isMobileDevice)
-      setIsIOS(isIOSDevice)
-      setIsAndroid(isAndroidDevice)
 
       // iOS-specific optimizations
       if (isIOSDevice) {
@@ -94,9 +50,6 @@ export default function Home() {
         if (viewport) {
           viewport.setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no')
         }
-
-        // Add iOS-specific CSS classes
-        document.body.classList.add('ios')
 
         // Handle iOS Safari address bar
         const setVH = () => {
@@ -115,173 +68,133 @@ export default function Home() {
 
       // Android-specific optimizations
       if (isAndroidDevice) {
-        document.body.classList.add('android')
-
-        // Enable smooth scrolling for Android
         document.documentElement.style.scrollBehavior = 'smooth'
       }
     }
-
     checkDevice()
   }, [])
 
   return (
-    <div className={`min-h-screen transition-all duration-300 ${
-      isMobile ? 'mobile-optimized' : ''
-    } ${
-      isIOS ? 'ios-optimized' : ''
-    } ${
-      isAndroid ? 'android-optimized' : ''
-    }`} style={{
-      minHeight: isIOS ? 'calc(var(--vh, 1vh) * 100)' : '100vh'
-    }}>
-      {/* Structured Data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(structuredData),
-        }}
-      />
+    <div className="min-h-screen bg-[#FDFBF8] text-gray-800">
 
-      <div className="min-h-screen bg-orange-50">
+      {/* Header */}
+      <header className="bg-[#FDFBF8]/95 backdrop-blur-md sticky top-0 z-50 border-b border-gray-200/50 shadow-sm">
+        <div className="container mx-auto px-6 py-4 flex justify-between items-center">
+          <Link href="/" className="flex items-center space-x-3">
+            <img
+              src="/Images/OptiFarm-Logo2.svg"
+              alt="Optimist Farm"
+              className="h-12 w-auto"
+            />
+          </Link>
+          <nav className="hidden md:flex space-x-6 text-gray-600">
+            <a href="#mission" className="hover:text-amber-700 transition-colors">Our Mission</a>
+            <a href="#how-it-works" className="hover:text-amber-700 transition-colors">How It Works</a>
+            <a href="#pricing" className="hover:text-amber-700 transition-colors">Pricing</a>
+            <a href="#community" className="hover:text-amber-700 transition-colors">Community</a>
+          </nav>
+          <a href="#pricing" className="bg-gradient-to-r from-yellow-600 to-amber-600 text-white font-bold py-2 px-5 rounded-full shadow-md hover:from-yellow-700 hover:to-amber-700 transition-all hover:-translate-y-0.5 hover:shadow-lg">
+            Start Your Trial
+          </a>
+        </div>
+      </header>
 
-        {/* Header */}
-        <header className="relative z-10 bg-white/90 backdrop-blur-lg border-b border-gray-200/50 sticky top-0">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center h-14 md:h-16">
-              <div className="flex items-center space-x-2 md:space-x-3">
-                <div className="text-2xl md:text-3xl">🚜</div>
-                <h1 className="text-lg md:text-2xl font-bold bg-gradient-to-r from-emerald-500 to-blue-500 bg-clip-text text-transparent">
-                  Optimist Farm
-                </h1>
-              </div>
-
-              {/* Mobile Navigation */}
-              <nav className="flex md:hidden">
-                <button
-                  className="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors touch-manipulation"
-                  aria-label="Menu"
-                >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                  </svg>
-                </button>
-              </nav>
-
-              {/* Desktop Navigation */}
-              <nav className="hidden md:flex space-x-8">
-                <a href="#books" className="text-gray-800 hover:text-blue-600 transition-colors">
-                  Children's Books
-                </a>
-                <a href="#adult-books" className="text-gray-800 hover:text-purple-600 transition-colors">
-                  Adult Books
-                </a>
-                <a href="#merchandise" className="text-gray-800 hover:text-orange-600 transition-colors">
-                  Merchandise
-                </a>
-              </nav>
-
-            </div>
-          </div>
-        </header>
+      <main className="relative">
 
         {/* Hero Section */}
-        <section className="relative py-12 md:py-20 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center">
+        <section className="relative text-center py-20 md:py-32 overflow-hidden bg-gradient-to-b from-[#FDFBF8] via-orange-50/30 to-[#FDFBF8]">
+          {/* Background Pattern */}
+          <div className="absolute inset-0 opacity-10" style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4c8b8' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+            backgroundAttachment: 'fixed'
+          }}></div>
+
+          <div className="container mx-auto px-6 relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
+              className="bg-gradient-to-br from-[#FDFBF8]/90 to-[#FDFBF8]/70 backdrop-blur-sm rounded-2xl py-16 px-6"
             >
-              <div className="mb-6 md:mb-8">
-                <img
-                  src="/OptiFarm-logoTest.png"
-                  alt="Optimist Farm Logo"
-                  className="mx-auto h-32 sm:h-40 md:h-48 lg:h-60 w-auto"
-                  style={{
-                    // iOS optimization: prevent image flickering
-                    WebkitTransform: 'translateZ(0)',
-                    // Android optimization: smooth image rendering
-                    imageRendering: 'auto'
-                  }}
-                />
-              </div>
-              <p className="text-base sm:text-lg md:text-xl text-gray-700 mb-6 md:mb-8 leading-relaxed px-2">
-                A magical digital library where stories come to life. Perfect for family reading time
-                featuring interactive books that inspire wonder and learning.
+              <motion.h1
+                className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-tight tracking-tight font-serif bg-gradient-to-r from-amber-700 via-orange-600 to-amber-800 bg-clip-text text-transparent"
+                initial={{ rotateX: -15, opacity: 0 }}
+                animate={{ rotateX: 0, opacity: 1 }}
+                transition={{ duration: 1, ease: "easeOut" }}
+              >
+                Turn Story Time into<br />Connection Time.
+              </motion.h1>
+              <p className="mt-6 text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                A library of beautiful, values-based stories for your 3-5 year old. Delivered monthly and designed to be read together, transforming your tablet into a tool for bonding.
               </p>
-
-              {/* Mobile Quick Actions */}
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center md:hidden">
-                <a
-                  href="#books"
-                  className="w-full sm:w-auto bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold transition-colors touch-manipulation"
-                >
-                  📚 Children's Books
-                </a>
-                <a
-                  href="#merchandise"
-                  className="w-full sm:w-auto bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-xl font-semibold transition-colors touch-manipulation"
-                >
-                  🎁 Shop Now
+              <div className="mt-10">
+                <a href="#pricing" className="inline-block bg-gradient-to-r from-yellow-600 to-amber-600 text-white font-bold py-4 px-10 text-lg rounded-full shadow-xl hover:from-yellow-700 hover:to-amber-700 transition-all hover:-translate-y-1 hover:shadow-2xl">
+                  Join the Farm & Get Your First Book
                 </a>
               </div>
             </motion.div>
           </div>
         </section>
 
-        {/* Children's Books Section */}
-        <section id="books" className="py-16 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto">
+        {/* Library Section - Featured Book */}
+        <section id="books" className="py-16 bg-white/40">
+          <div className="container mx-auto px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-4xl font-bold text-center text-gray-900 mb-4">
-                Children's Books
-              </h3>
-              <p className="text-lg text-gray-700 text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-center text-green-950 font-serif mb-4">
+                Our Story Library
+              </h2>
+              <p className="text-lg text-gray-600 text-center mb-12 max-w-2xl mx-auto">
                 Interactive stories designed for young minds and family bonding
               </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
-                {books.map((book) => (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+                {books.map((book, index) => (
                   <motion.div
                     key={book.id}
-                    whileHover={{ scale: isMobile ? 1 : 1.05, y: isMobile ? 0 : -5 }}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    whileHover={{ scale: isMobile ? 1 : 1.05, y: isMobile ? 0 : -8 }}
                     whileTap={{ scale: 0.98 }}
                     className="group"
                   >
                     <Link href={book.href} className="block">
-                      <div className="bg-white/60 backdrop-blur-lg rounded-2xl md:rounded-3xl p-4 md:p-6 shadow-xl border border-white/20 hover:bg-white/80 transition-all duration-300 touch-manipulation">
-                        <div className="aspect-square rounded-xl md:rounded-2xl mb-3 md:mb-4 overflow-hidden bg-gradient-to-br from-emerald-300 to-blue-300">
-                          <img
+                      <div className="relative bg-white/80 backdrop-blur-lg rounded-2xl p-6 shadow-xl border border-white/20 hover:bg-white hover:shadow-2xl transition-all duration-300 overflow-hidden">
+                        <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/0 to-blue-500/0 group-hover:from-emerald-500/5 group-hover:to-blue-500/5 transition-all duration-300"></div>
+                        <div className="relative aspect-square rounded-xl mb-4 overflow-hidden bg-gradient-to-br from-emerald-300 to-blue-300 group-hover:shadow-lg transition-shadow duration-300">
+                          <motion.img
                             src={book.image}
                             alt={book.title}
                             className="w-full h-full object-cover"
-                            style={{
-                              // iOS optimization
-                              WebkitTransform: 'translateZ(0)',
-                              // Android optimization
-                              imageRendering: 'auto'
-                            }}
+                            whileHover={{ scale: 1.05 }}
+                            transition={{ duration: 0.3 }}
                           />
                         </div>
-                        <h4 className="text-lg md:text-xl font-bold text-gray-900 mb-2">
+                        <h3 className="relative text-xl font-bold text-gray-900 mb-2 group-hover:text-green-700 transition-colors">
                           {book.title}
-                        </h4>
-                        <p className="text-gray-700 text-xs md:text-sm leading-relaxed">
+                        </h3>
+                        <p className="relative text-gray-600 text-sm leading-relaxed">
                           {book.description}
                         </p>
-                        {/* Mobile read button */}
-                        <div className="mt-3 md:hidden">
-                          <span className="inline-flex items-center text-blue-600 font-semibold text-sm">
+                        <div className="relative mt-4">
+                          <span className="inline-flex items-center text-green-700 font-semibold text-sm group-hover:translate-x-1 transition-transform duration-300">
                             Read Now
-                            <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <motion.svg
+                              className="w-4 h-4 ml-1"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                              animate={{ x: [0, 4, 0] }}
+                              transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+                            >
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                            </svg>
+                            </motion.svg>
                           </span>
                         </div>
                       </div>
@@ -290,20 +203,27 @@ export default function Home() {
                 ))}
 
                 {/* Coming Soon Cards */}
-                {[1, 2].map((index) => (
+                {[1, 2, 3].map((index) => (
                   <motion.div
                     key={`coming-soon-${index}`}
-                    initial={{ opacity: 0.5 }}
-                    whileInView={{ opacity: 1 }}
-                    className="bg-white/40  backdrop-blur-lg rounded-3xl p-6 shadow-lg border border-white/20 "
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: (books.length + index) * 0.1 }}
+                    viewport={{ once: true }}
+                    whileHover={{ scale: isMobile ? 1 : 1.03 }}
+                    className="bg-white/60 backdrop-blur-lg rounded-2xl p-6 shadow-lg border border-white/20 hover:shadow-xl transition-all duration-300"
                   >
-                    <div className="aspect-square bg-gradient-to-br from-indigo-200 to-purple-300 dark:from-gray-700 dark:to-gray-600 rounded-2xl mb-4 flex items-center justify-center text-4xl">
+                    <motion.div
+                      className="aspect-square bg-gradient-to-br from-indigo-200 to-purple-300 rounded-xl mb-4 flex items-center justify-center text-4xl"
+                      animate={{ rotate: [0, 5, -5, 0] }}
+                      transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
+                    >
                       ✨
-                    </div>
-                    <h4 className="text-xl font-bold text-gray-900 mb-2">
+                    </motion.div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">
                       Coming Soon
-                    </h4>
-                    <p className="text-gray-700 text-sm">
+                    </h3>
+                    <p className="text-gray-600 text-sm">
                       More magical stories on the way
                     </p>
                   </motion.div>
@@ -313,133 +233,449 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Adult Books Section */}
-        <section id="adult-books" className="py-16 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto">
+        {/* The Problem Section */}
+        <section id="mission" className="py-16 bg-[#FDFBF8]">
+          <div className="container mx-auto px-6 text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-4xl font-bold text-center text-gray-900 mb-4">
-                Books for Adults
-              </h3>
-              <p className="text-lg text-gray-700 text-center mb-12">
-                Engaging content for grown-up readers
+              <h2 className="text-3xl md:text-4xl font-bold text-green-950 font-serif">
+                Feeling the screen time struggle? You&apos;re not alone.
+              </h2>
+              <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                Modern parenthood is a balancing act. You want to raise a kind, resilient, and thoughtful child, but the guilt of handing over a device just to get through the day is real. What if that screen could become your greatest tool for connection?
               </p>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {adultBooks.map((book) => (
-                  <motion.div
-                    key={book.id}
-                    initial={{ opacity: 0.5 }}
-                    whileInView={{ opacity: 1 }}
-                    className="bg-white/40  backdrop-blur-lg rounded-3xl p-6 shadow-lg border border-white/20 "
-                  >
-                    <div className="aspect-square bg-gradient-to-br from-purple-300 to-pink-300 dark:from-purple-800 dark:to-indigo-800 rounded-2xl mb-4 flex items-center justify-center text-4xl">
-                      📖
-                    </div>
-                    <h4 className="text-xl font-bold text-gray-900 mb-2">
-                      {book.title}
-                    </h4>
-                    <p className="text-gray-700 text-sm">
-                      {book.description}
-                    </p>
-                  </motion.div>
-                ))}
-              </div>
             </motion.div>
           </div>
         </section>
 
-        {/* Merchandise Section */}
-        <section id="merchandise" className="py-16 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto">
+        {/* Our Mission/Solution */}
+        <section className="py-16 bg-green-50/50">
+          <div className="container mx-auto px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
+              className="flex flex-col md:flex-row-reverse items-center gap-12"
             >
-              <h3 className="text-4xl font-bold text-center text-gray-900 mb-4">
-                Optimist Farm Merchandise
-              </h3>
-              <p className="text-lg text-gray-700 text-center mb-12">
-                Bring the magic home with our collection
-              </p>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {merchandise.map((item) => (
-                  <motion.div
-                    key={item.id}
-                    initial={{ opacity: 0.5 }}
-                    whileInView={{ opacity: 1 }}
-                    whileHover={{ scale: 1.02 }}
-                    className="bg-white/40  backdrop-blur-lg rounded-3xl p-6 shadow-lg border border-white/20  hover:bg-white/60  transition-all"
-                  >
-                    <div className="aspect-square bg-gradient-to-br from-yellow-300 to-orange-400 dark:from-yellow-800 dark:to-orange-800 rounded-2xl mb-4 flex items-center justify-center text-4xl">
-                      {item.id === 'plushies' ? '🧸' : item.id === 'books' ? '📚' : '🎒'}
-                    </div>
-                    <h4 className="text-xl font-bold text-gray-900 mb-2">
-                      {item.title}
-                    </h4>
-                    <p className="text-gray-700 text-sm">
-                      {item.description}
-                    </p>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Footer */}
-        <footer className="py-12">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div>
-                <div className="flex items-center space-x-3 mb-4">
-                  <div className="text-2xl">🚜</div>
-                  <h4 className="text-xl font-bold text-gray-900">Optimist Farm</h4>
+              <div className="md:w-1/2 flex justify-center">
+                <div className="rounded-2xl shadow-xl overflow-hidden w-[80%]">
+                  <img
+                    src="/Images/FamilyReading.png"
+                    alt="Families reading together in a cozy library setting"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-                <p className="text-gray-700 text-sm">
-                  Creating magical reading experiences for families around the world.
+              </div>
+              <div className="md:w-1/2">
+                <h3 className="text-3xl font-bold text-green-950 font-serif">Our Mission: More Than Just Stories</h3>
+                <p className="mt-4 text-lg text-gray-600 leading-relaxed">
+                  Optimist Farm was created to empower parents like you. We believe in turning passive screen time into active, shared moments of learning and love. Each of our stories is carefully crafted to embed timeless values—like gratitude, kindness, and resilience—into simple, engaging narratives that spark curiosity and conversation.
+                </p>
+                <p className="mt-4 text-lg text-gray-600 leading-relaxed">
+                  This isn&apos;t just about keeping your child entertained. It&apos;s about giving you a meaningful way to teach life&apos;s most important lessons, one story at a time.
                 </p>
               </div>
+            </motion.div>
+          </div>
+        </section>
 
-              <div>
-                <h5 className="text-lg font-semibold text-gray-900 mb-4">Quick Links</h5>
-                <ul className="space-y-2 text-sm">
-                  <li><a href="#books" className="text-gray-700 hover:text-blue-600 transition-colors">Children's Books</a></li>
-                  <li><a href="#adult-books" className="text-gray-700 hover:text-purple-600 transition-colors">Adult Books</a></li>
-                  <li><a href="#merchandise" className="text-gray-700 hover:text-orange-600 transition-colors">Merchandise</a></li>
-                </ul>
+        {/* How It Works */}
+        <section id="how-it-works" className="py-20 bg-[#FDFBF8]">
+          <div className="container mx-auto px-6 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-3xl md:text-4xl font-bold text-green-950 font-serif">
+                Start Your Journey in 3 Simple Steps
+              </h2>
+              <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-12">
+
+                {/* Step 1 */}
+                <motion.div
+                  className="flex flex-col items-center group"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                  viewport={{ once: true }}
+                  whileHover={{ y: -8, scale: 1.05 }}
+                >
+                  <motion.div
+                    className="bg-orange-100 rounded-full p-6 shadow-lg group-hover:shadow-2xl group-hover:bg-orange-200 transition-all duration-300"
+                    whileHover={{ rotate: [0, -10, 10, -10, 0] }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    <svg className="w-12 h-12 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v11.494m-9-5.747h18" />
+                    </svg>
+                  </motion.div>
+                  <h3 className="mt-6 text-xl font-bold group-hover:text-orange-600 transition-colors">1. Join the Farm</h3>
+                  <p className="mt-2 text-gray-600 text-center">
+                    Choose a subscription that fits your family and get instant access to our curated library of stories.
+                  </p>
+                </motion.div>
+
+                {/* Step 2 */}
+                <motion.div
+                  className="flex flex-col items-center group"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  viewport={{ once: true }}
+                  whileHover={{ y: -8, scale: 1.05 }}
+                >
+                  <motion.div
+                    className="bg-green-100 rounded-full p-6 shadow-lg group-hover:shadow-2xl group-hover:bg-green-200 transition-all duration-300"
+                    whileHover={{ rotate: [0, -10, 10, -10, 0] }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    <svg className="w-12 h-12 text-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </motion.div>
+                  <h3 className="mt-6 text-xl font-bold group-hover:text-green-700 transition-colors">2. Discover a New Story Monthly</h3>
+                  <p className="mt-2 text-gray-600 text-center">
+                    A brand new, beautifully illustrated book arrives in your library every month, centered on a new value.
+                  </p>
+                </motion.div>
+
+                {/* Step 3 */}
+                <motion.div
+                  className="flex flex-col items-center group"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                  viewport={{ once: true }}
+                  whileHover={{ y: -8, scale: 1.05 }}
+                >
+                  <motion.div
+                    className="bg-blue-100 rounded-full p-6 shadow-lg group-hover:shadow-2xl group-hover:bg-blue-200 transition-all duration-300"
+                    whileHover={{ rotate: [0, -10, 10, -10, 0] }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    <motion.svg
+                      className="w-12 h-12 text-blue-500"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      animate={{ scale: [1, 1.1, 1] }}
+                      transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    </motion.svg>
+                  </motion.div>
+                  <h3 className="mt-6 text-xl font-bold group-hover:text-blue-600 transition-colors">3. Read & Connect Together</h3>
+                  <p className="mt-2 text-gray-600 text-center">
+                    Enjoy &quot;Connection Questions&quot; at the end of each story to spark meaningful conversations with your child.
+                  </p>
+                </motion.div>
+
               </div>
+            </motion.div>
+          </div>
+        </section>
 
-              <div>
-                <h5 className="text-lg font-semibold text-gray-900 mb-4">Best Experience</h5>
-                <div className="flex items-center space-x-4 text-sm text-gray-700">
-                  <div className="flex items-center space-x-2">
-                    <Tablet className="h-4 w-4" />
-                    <span>iPad</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <Monitor className="h-4 w-4" />
-                    <span>Desktop</span>
-                  </div>
+        {/* About the Author */}
+        <section className="py-20 bg-white/60">
+          <div className="container mx-auto px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="flex flex-col md:flex-row items-center gap-12 max-w-6xl mx-auto"
+            >
+              <div className="md:w-5/12 flex justify-center">
+                <div className="rounded-2xl overflow-hidden shadow-2xl w-[120%]">
+                  <img
+                    src="/Images/NancyJo_PlaceholderBio.png"
+                    alt="Nancy Jo Spear - Author at book signing"
+                    className="w-full h-auto object-cover"
+                  />
                 </div>
               </div>
-            </div>
-
-            <div className="mt-8 pt-8 text-center">
-              <p className="text-sm text-gray-700">
-                © 2024 Optimist Farm. Made with ❤️ for families everywhere.
-              </p>
-            </div>
+              <div className="md:w-7/12">
+                <h2 className="text-3xl md:text-4xl font-bold text-green-950 font-serif mb-6">
+                  Meet the Author
+                </h2>
+                <div className="prose prose-lg text-gray-600 leading-relaxed space-y-4">
+                  <p>
+                    <strong className="text-gray-900">Nancy Jo Spear</strong> is a mother, storyteller and student of timeless wisdom who believes the most profound life lessons are often the simplest. In a world of increasing digital distraction, she was inspired to create a sanctuary for thoughtful families—a place to slow down, connect, and nurture the values that matter most.
+                  </p>
+                  <p>
+                    Drawing inspiration from the quiet wisdom of the natural world and the everyday moments of parenthood, Nancy Jo founded Optimist Farm to help children and their parents build a foundation of resilient optimism. Her stories are crafted not just to be read, but to be felt, sparking the meaningful conversations that help little hearts grow strong and kind.
+                  </p>
+                </div>
+                <div className="mt-8 flex justify-center">
+                  <img
+                    src="/Images/OptiFarm-Logo2.svg"
+                    alt="Optimist Farm"
+                    className="h-28 w-auto opacity-80"
+                  />
+                </div>
+              </div>
+            </motion.div>
           </div>
-        </footer>
-      </div>
+        </section>
+
+        {/* Pricing */}
+        <section id="pricing" className="py-20 bg-green-50/50">
+          <div className="container mx-auto px-6 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-3xl md:text-4xl font-bold text-green-950 font-serif">
+                Find the Perfect Plan for Your Family
+              </h2>
+              <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+                All plans start with a 7-day free trial. Cancel anytime.
+              </p>
+
+              <div className="mt-12 flex flex-col lg:flex-row justify-center items-center gap-8">
+
+                {/* Sprout Plan */}
+                <motion.div
+                  className="bg-white p-8 rounded-2xl shadow-lg border-2 border-transparent w-full max-w-sm hover:shadow-2xl hover:border-gray-200 transition-all duration-300 group"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                  viewport={{ once: true }}
+                  whileHover={{ y: -10, scale: 1.02 }}
+                >
+                  <h3 className="text-2xl font-bold group-hover:text-green-600 transition-colors">The Sprout</h3>
+                  <p className="mt-2 text-gray-500">Our essentials plan</p>
+                  <p className="mt-6 text-5xl font-bold group-hover:text-green-600 transition-colors">
+                    $9<span className="text-xl font-medium text-gray-500">.99/mo</span>
+                  </p>
+                  <ul className="mt-8 text-left space-y-4">
+                    <motion.li
+                      className="flex items-center"
+                      whileHover={{ x: 5 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <Check className="w-6 h-6 text-green-500 mr-2 flex-shrink-0" />
+                      <span>Full Story Library Access</span>
+                    </motion.li>
+                    <motion.li
+                      className="flex items-center"
+                      whileHover={{ x: 5 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <Check className="w-6 h-6 text-green-500 mr-2 flex-shrink-0" />
+                      <span>1 New Book Every Month</span>
+                    </motion.li>
+                    <motion.li
+                      className="flex items-center"
+                      whileHover={{ x: 5 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <Check className="w-6 h-6 text-green-500 mr-2 flex-shrink-0" />
+                      <span>Printable Activity Sheets</span>
+                    </motion.li>
+                  </ul>
+                  <motion.a
+                    href="#"
+                    className="mt-8 block w-full bg-gray-200 text-gray-800 font-bold py-3 px-6 rounded-full hover:bg-gray-300 transition-colors"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    Start Free Trial
+                  </motion.a>
+                </motion.div>
+
+                {/* Oak Plan */}
+                <motion.div
+                  className="bg-white p-8 rounded-2xl shadow-2xl border-2 border-green-700 w-full max-w-sm relative hover:shadow-3xl transition-all duration-300 group"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                  viewport={{ once: true }}
+                  whileHover={{ y: -12, scale: 1.03 }}
+                >
+                  <span className="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 bg-green-700 text-white text-sm font-bold px-4 py-1 rounded-full">
+                    Most Popular
+                  </span>
+                  <h3 className="text-2xl font-bold text-green-700">The Oak</h3>
+                  <p className="mt-2 text-gray-500">For the whole family</p>
+                  <p className="mt-6 text-5xl font-bold">
+                    $19<span className="text-xl font-medium text-gray-500">.99/mo</span>
+                  </p>
+                  <ul className="mt-8 text-left space-y-4">
+                    <li className="flex items-center font-bold">
+                      <Check className="w-6 h-6 text-green-500 mr-2 flex-shrink-0" />
+                      <span>Everything in Sprout, plus:</span>
+                    </li>
+                    <li className="flex items-center">
+                      <Check className="w-6 h-6 text-green-500 mr-2 flex-shrink-0" />
+                      <span>Access to Parent Community</span>
+                    </li>
+                    <li className="flex items-center">
+                      <Check className="w-6 h-6 text-green-500 mr-2 flex-shrink-0" />
+                      <span>Monthly Parent Meditations</span>
+                    </li>
+                    <li className="flex items-center">
+                      <Check className="w-6 h-6 text-green-500 mr-2 flex-shrink-0" />
+                      <span>Expert Q&A Sessions</span>
+                    </li>
+                  </ul>
+                  <a href="#" className="mt-8 block w-full bg-green-700 text-white font-bold py-3 px-6 rounded-full hover:bg-green-800 transition-colors">
+                    Start Free Trial
+                  </a>
+                </motion.div>
+
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Community Section */}
+        <section id="community" className="py-20 bg-[#FDFBF8]">
+          <div className="container mx-auto px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="flex flex-col md:flex-row-reverse items-center gap-12"
+            >
+              <div className="md:w-1/2 flex justify-center">
+                <div className="rounded-2xl shadow-xl overflow-hidden w-[70%]">
+                  <img
+                    src="/Images/ParentCommunity.png"
+                    alt="Diverse group of parents connecting and sharing together"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+              <div className="md:w-1/2">
+                <h3 className="text-3xl font-bold text-green-950 font-serif">
+                  You&apos;re Not Parenting Alone
+                </h3>
+                <p className="mt-4 text-lg text-gray-600 leading-relaxed">
+                  Join our private, supportive community of &quot;Oak&quot; members. Here you can share challenges, celebrate wins, and connect with other thoughtful parents on the same journey. It&apos;s a space for honest conversation and shared wisdom, away from the noise of social media.
+                </p>
+                <a href="#" className="mt-6 inline-block text-green-700 font-bold hover:underline">
+                  Learn more about the Oak Community &rarr;
+                </a>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Testimonials */}
+        <section className="py-20 bg-gray-100">
+          <div className="container mx-auto px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-3xl font-bold text-center text-green-950 font-serif">
+                What Our Families Are Saying
+              </h2>
+              <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <motion.div
+                  className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow"
+                  whileHover={{ y: -5 }}
+                >
+                  <p className="text-gray-600 leading-relaxed">
+                    &quot;Optimist Farm has completely changed our evenings. Instead of arguing over cartoons, we now look forward to our story. It&apos;s our special time to connect, and I feel like a better parent for it.&quot;
+                  </p>
+                  <p className="mt-4 font-bold text-gray-800">- Jessica R., Mom of Leo (4)</p>
+                </motion.div>
+
+                <motion.div
+                  className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow"
+                  whileHover={{ y: -5 }}
+                >
+                  <p className="text-gray-600 leading-relaxed">
+                    &quot;The stories are so sweet and beautiful, but it&apos;s the &apos;Connection Questions&apos; that are pure magic. The things my 5-year-old says just blow me away. I&apos;m learning so much about her little world.&quot;
+                  </p>
+                  <p className="mt-4 font-bold text-gray-800">- David L., Dad of Mia (5)</p>
+                </motion.div>
+
+                <motion.div
+                  className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow"
+                  whileHover={{ y: -5 }}
+                >
+                  <p className="text-gray-600 leading-relaxed">
+                    &quot;As an educator, I&apos;m incredibly impressed with the depth of these stories. They teach complex values in such a simple, accessible way. I recommend it to all the parents in my preschool class.&quot;
+                  </p>
+                  <p className="mt-4 font-bold text-gray-800">- Sarah K., Preschool Teacher</p>
+                </motion.div>
+
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Final CTA */}
+        <section className="py-20 text-white bg-green-800 relative overflow-hidden">
+          {/* Background Pattern */}
+          <div className="absolute inset-0 opacity-20" style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4c8b8' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+            backgroundAttachment: 'fixed'
+          }}></div>
+
+          <div className="container mx-auto px-6 text-center relative z-10">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-3xl md:text-4xl font-bold font-serif text-white">
+                Ready to Cultivate a More Connected Family?
+              </h2>
+              <p className="mt-4 text-lg text-green-200 max-w-2xl mx-auto">
+                Start your free 7-day trial today. Explore our library, read your first story, and discover the joy of shared reading.
+              </p>
+              <div className="mt-8">
+                <a href="#pricing" className="inline-block bg-orange-500 text-white font-bold py-4 px-10 text-lg rounded-full shadow-xl hover:bg-orange-600 transition-all hover:-translate-y-1 hover:shadow-2xl">
+                  Start Your Free Trial
+                </a>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+      </main>
+
+      {/* Footer */}
+      <footer className="bg-gray-800 text-white py-12">
+        <div className="container mx-auto px-6 text-center">
+          <Link href="/" className="flex items-center justify-center mb-6">
+            <img
+              src="/Images/OptiFarm-Logo2.svg"
+              alt="Optimist Farm"
+              className="h-16 w-auto opacity-90 hover:opacity-100 transition-opacity"
+            />
+          </Link>
+          <div className="mt-6 flex justify-center space-x-6">
+            <a href="#" className="hover:text-green-400 transition-colors">About</a>
+            <a href="#" className="hover:text-green-400 transition-colors">Contact</a>
+            <a href="#" className="hover:text-green-400 transition-colors">FAQ</a>
+            <a href="#" className="hover:text-green-400 transition-colors">Careers</a>
+          </div>
+          <p className="mt-6 text-gray-400 text-sm flex items-center justify-center gap-2">
+            &copy; 2025 Optimist Farm, LLC. All Rights Reserved. Made with <Heart className="w-4 h-4 fill-current" /> for thoughtful families.
+          </p>
+          <p className="mt-2 text-gray-500 text-xs">optimistfarm.com</p>
+        </div>
+      </footer>
+
     </div>
   )
 }
