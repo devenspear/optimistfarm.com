@@ -15,8 +15,8 @@ export const pages: BookPage[] = [
   // Cover Page
   {
     id: 0,
-    title: "Bunny's Thank-You Garden",
-    text: "A Children's Picture Book for Ages 3–5",
+    title: "Barnaby Bunny's Garden",
+    text: "A Story About Patience and Gratitude",
     spreadId: "BunnyCover",
     imagePosition: "center",
     backgroundColor: "bg-white",
@@ -24,49 +24,49 @@ export const pages: BookPage[] = [
     sound: "gentle"
   },
 
-  // Spread 1-2: Introduction
+  // Spread 1-2: Setup
   {
     id: 1,
-    title: "In the Garden",
-    text: "In a sunny garden, Bunny sowed her seeds.\n\"Grow, carrots, grow! Hurry, please!\"",
-    spreadId: "1-2", 
+    title: "In a Sunny Garden",
+    text: "In a sunny garden, in his overalls blue,\nBarnaby Bunny had work to do.\nHe held his new watering can, shiny and red,\nTo water the seeds in their cozy soil bed.",
+    spreadId: "1-2",
     imagePosition: "left",
     backgroundColor: "bg-white",
     textColor: "text-gray-800",
-    sound: "wind",
+    sound: "gentle",
     interactive: true
   },
 
-  // Spread 3-4: Setup
+  // Spread 3-4: Problem Setup
   {
     id: 2,
     title: "Waiting and Waiting",
-    text: "One day, two days, three days creeped.\nTiny sprouts peeked up—oh, so slow!\n\"My carrots! Where?\" Bunny sighed and weeped.",
+    text: "One day, two days, three days went past,\nBarnaby wanted his sprouts up fast.\nHe watched the soil, his heart sank down,\nHis hopeful smile turned to a frown.",
     spreadId: "3-4",
-    imagePosition: "right", 
+    imagePosition: "right",
     backgroundColor: "bg-white",
     textColor: "text-gray-800",
     sound: "gentle"
   },
 
-  // Spread 4-5: Problem
+  // Spread 5-6: Problem
   {
     id: 3,
-    title: "Bunny Gets Frustrated",
-    text: "Sprouts so small, no carrots to munch!\nBunny's tummy growled with a grumbly crunch.\nTug, tug, tug—she pulled in a huff!\n\"Hmph!\" she groaned. \"This is tough stuff!\"",
+    title: "Barnaby Gets Frustrated",
+    text: "He stomped his foot, his mind in a rush,\nHe checked every morning, he made such a fuss.\n(Harrumph!) \"They won't grow! This is all too tough!\"\nHe huffed and he puffed. He'd had quite enough.",
     spreadId: "4-5",
     imagePosition: "left",
-    backgroundColor: "bg-white", 
+    backgroundColor: "bg-white",
     textColor: "text-gray-800",
-    sound: "rain",
+    sound: "gentle",
     interactive: true
   },
 
-  // Spread 6-7: Owl's Wisdom
+  // Spread 7-8: Rising Action/Guide
   {
     id: 4,
-    title: "Wise Owl Helps",
-    text: "Bunny hopped to Owl in the tree.\n\"Carrots won't grow! Please help me!\"\nOwl hooted, \"Thank the garden, dear.\nSay 'thank you'—see what appears!\"",
+    title: "Ollie the Owl",
+    text: "He sat by his garden, \"What can I do?\nMy carrots won't grow, I'm feeling so blue!\"\nOllie the Owl, with his spectacles bright,\nHooted from his perch, \"Patience, my friend. Just look for the light.\"",
     spreadId: "6-7",
     imagePosition: "right",
     backgroundColor: "bg-white",
@@ -74,24 +74,24 @@ export const pages: BookPage[] = [
     sound: "gentle"
   },
 
-  // Spread 8-9: First Thank You
+  // Spread 9-10: Turning Point
   {
     id: 5,
-    title: "Thank You, Soil!",
-    text: "\"Thank you, Soil!\" Bunny whispered low.\nThe ground lit up with a soft, soft glow.\nDid it hear? Her eyes grew wide.\nA spark of joy warmed deep inside.",
+    title: "The Magic Light",
+    text: "As Ollie spoke, a soft light gleamed,\nHis wisdom woke the magic, it seemed!\nBarnaby sat still, his worries took drift,\nHe looked for the day's small, wonderful gift.",
     spreadId: "8-9",
     imagePosition: "left",
     backgroundColor: "bg-white",
     textColor: "text-gray-800",
-    sound: "soil",
+    sound: "magic",
     interactive: true
   },
 
-  // Spread 10-11: Sun and Rain
+  // Spread 11-12: Practice/Growth
   {
     id: 6,
     title: "Thank You, Sun and Rain!",
-    text: "\"Thank you, Sun!\" Bunny sang with glee.\nThe garden glowed for all to see.\n\"Thank you, Rain!\" she whispered low.\nRaindrops sparkled with a starry glow.",
+    text: "He saw a small sprout, and sang with glee,\n\"Thank you, dear Sun, for shining on me!\"\nHe felt the cool drops, so happy and low,\n\"Thank you, dear Rain, for helping it grow!\"",
     spreadId: "10-11",
     imagePosition: "right",
     backgroundColor: "bg-white",
@@ -100,37 +100,37 @@ export const pages: BookPage[] = [
     interactive: true
   },
 
-  // Spread 12-13: Wind and Bees
+  // Spread 13-14: Growth
   {
     id: 7,
-    title: "Thank You, Wind and Bees!",
-    text: "\"Thank you, Wind!\" Bunny twirled with zing.\nBreezes danced and made her heart sing.\n\"Thank you, Bees!\" she giggled with cheer.\nBuzz, buzz—happy hums drew near!",
+    title: "Thank You, Earth and Bees!",
+    text: "\"Thank you, good Earth,\" he twirled with a zing.\nHe heard the bee hum and the soft wind sing.\n\"Thank you, new sprout, for growing right here!\"\nHis happy, joyful heart felt full of cheer.",
     spreadId: "12-13",
     imagePosition: "left",
     backgroundColor: "bg-white",
-    textColor: "text-gray-800", 
+    textColor: "text-gray-800",
     sound: "bees",
     interactive: true
   },
 
-  // Spread 14-15: Growing Gratitude
+  // Spread 15-16: Growth
   {
     id: 8,
-    title: "Carrots Begin to Grow!",
-    text: "Day by day, Bunny thanked with cheer.\nSprouts grew tall—carrots bloomed so near!\n\"Who else to thank?\" she asked the sky.\nWhat would you thank? Can you try?",
+    title: "Day After Day",
+    text: "Day after day, he practiced this way,\nFinding new things to be grateful for each day.\nThe sprouts grew up tall, glowing green and bright,\nHis heart filled with joy, his heart filled with light.",
     spreadId: "14-15",
     imagePosition: "right",
-    backgroundColor: "bg-white", 
+    backgroundColor: "bg-white",
     textColor: "text-gray-800",
     sound: "sparkle",
     interactive: true
   },
 
-  // Spread 16-17: The Magic Moment
+  // Spread 17-18: Climax
   {
     id: 9,
-    title: "Carrots Appear!",
-    text: "\"Thank you, worms! Thank you, stars!\"\nCarrots popped with a bright, bright spark!\nBunny clapped, \"Oh, what a sight!\nThank you, garden—you grew so bright!\"",
+    title: "Carrots Pop Up!",
+    text: "Then carrots popped up! Orange, crisp, and new!\nHis patience and gratitude helped them push through.\nHe let out a breath, quiet and deep,\nThe happy reward the garden loves to keep.",
     spreadId: "16-17",
     imagePosition: "left",
     backgroundColor: "bg-white",
@@ -139,11 +139,11 @@ export const pages: BookPage[] = [
     interactive: true
   },
 
-  // Spread 18-19: Sharing
+  // Spread 18-20: Resolution
   {
     id: 10,
     title: "Sharing with Friends",
-    text: "Bunny shared her carrots, crunch, crunch, yum!\nFriends nibbled, laughed—munch, munch, fun!\n\"Thank you, Bunny!\" they sang with glee.\nThe garden glowed for all to see.",
+    text: "He shared with his friends! Crunch, crunch, yum!\nGus the Goat nibbled, (beard and all, what fun!)\nChristy the Cow did a happy dance,\n\"Thank you, dear Barnaby!\" they cheered at first glance.",
     spreadId: "18-19",
     imagePosition: "right",
     backgroundColor: "bg-white",
@@ -151,23 +151,24 @@ export const pages: BookPage[] = [
     sound: "crunch"
   },
 
-  // Spread 20-21: Evening Gratitude
+  // Spread 21-22: Falling Action
   {
     id: 11,
-    title: "Peaceful Evening",
-    text: "\"Thanks, dear garden, for all you share.\nStars above twinkle, love fills the air.\"\nBunny's heart glowed with a joyful spark.\nGratitude shines in the cozy dark.",
+    title: "Starry Night",
+    text: "That night by the meadow, the friends looked up high,\nWatching the stars in the dark, velvet sky.\nBarnaby's heart glowed, both happy and bright,\nGratitude sparkled in the soft, quiet night.",
     spreadId: "20-21",
     imagePosition: "left",
     backgroundColor: "bg-white",
     textColor: "text-gray-800",
-    sound: "gentle"
+    sound: "sparkle",
+    interactive: true
   },
 
-  // Spread 22-24: Final Message
+  // Spread 23-24: Final Affirmation
   {
     id: 12,
-    title: "Your Turn to Thank!",
-    text: "Thank you makes hearts and gardens grow.\nBig or small, it's love to show.\nWhat's your thank you in your heart today?\nFriends and family, wind and rain, this sunny day—\nPick three things and share them, yay!",
+    title: "Your Turn!",
+    text: "A 'thank you' helps love and kindness grow,\nIt's a magical seed that you can sow.\nYour heart is a garden, happy and true!\nWhat's one small thing you are grateful for, too?",
     spreadId: "22-24",
     imagePosition: "left",
     backgroundColor: "bg-white",

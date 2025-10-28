@@ -37,25 +37,27 @@ export default function PageComponent({ page, pageIndex, onInteract }: PageCompo
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4, duration: 0.8 }}
-        className={`${page.textColor} font-baloo font-bold leading-relaxed px-4 md:px-8 xl:px-20 py-4 md:py-6`}
+        className={`${page.textColor} font-baloo font-bold leading-relaxed px-4 md:px-8 xl:px-20 py-4 md:py-6 flex flex-col h-full justify-center`}
       >
-        {page.title && (
-          <h2 className="font-bubblegum text-lg sm:text-xl md:text-2xl lg:text-5xl xl:text-5xl 2xl:text-6xl mb-3 leading-tight max-w-full text-center lg:text-left">
-            {page.title}
-          </h2>
-        )}
-        <div className="text-sm sm:text-base md:text-lg lg:text-2xl xl:text-3xl 2xl:text-3xl whitespace-pre-line leading-relaxed max-w-full text-center lg:text-left">
-          {page.text}
+        <div className="flex-shrink-0">
+          {page.title && (
+            <h2 className="font-bubblegum text-lg sm:text-xl md:text-2xl lg:text-4xl xl:text-5xl 2xl:text-5xl mb-2 leading-tight max-w-full text-center lg:text-left">
+              {page.title}
+            </h2>
+          )}
+          <div className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-2xl whitespace-pre-line leading-relaxed max-w-full text-center lg:text-left">
+            {page.text}
+          </div>
         </div>
-        
+
         {page.interactive && (
           <motion.button
             onClick={onInteract}
-            className="mt-8 px-8 py-4 bg-gradient-to-r from-yellow-400 to-orange-400 hover:from-yellow-500 hover:to-orange-500 rounded-full shadow-xl font-bubblegum text-xl text-white transition-all"
+            className="mt-3 md:mt-4 px-4 py-2 md:px-6 md:py-3 bg-gradient-to-r from-yellow-400 to-orange-400 hover:from-yellow-500 hover:to-orange-500 rounded-full shadow-xl font-bubblegum text-sm md:text-lg text-white transition-all self-center lg:self-start flex-shrink-0"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            ✨ Click for Magic! ✨
+            ✨ Tap for Magic! ✨
           </motion.button>
         )}
       </motion.div>
