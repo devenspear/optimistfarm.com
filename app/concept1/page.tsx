@@ -283,14 +283,14 @@ export default function Concept1() {
                 animate={{ rotateX: 0, opacity: 1 }}
                 transition={{ duration: 1, ease: "easeOut" }}
               >
-                Turn Story Time into<br />Connection Time.
+                Grow Everyday Virtues,<br />One Tap at a Time.
               </motion.h1>
               <p className="mt-6 text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                A library of beautiful, values-based stories for your 3-5 year old. Delivered monthly and designed to be read together, transforming your tablet into a tool for bonding.
+                Bright, interactive, rainbow-forward stories for families. Every page is an adventure with fun sounds, accessible design, and a new game: <strong>Can you find Pippin the Snail?</strong>
               </p>
               <div className="mt-10">
                 <a href="#pricing" className="inline-block bg-gradient-to-r from-yellow-600 to-amber-600 text-white font-bold py-4 px-10 text-lg rounded-full shadow-xl hover:from-yellow-700 hover:to-amber-700 transition-all hover:-translate-y-1 hover:shadow-2xl">
-                  Join the Farm & Get Your First Book
+                  Try a Story Now!
                 </a>
               </div>
             </motion.div>
@@ -393,7 +393,7 @@ export default function Concept1() {
           </div>
         </section>
 
-        {/* The Problem Section */}
+        {/* Our Method Section */}
         <section id="mission" className="py-16 bg-[#FDFBF8]">
           <div className="container mx-auto px-6 text-center">
             <motion.div
@@ -403,16 +403,19 @@ export default function Concept1() {
               viewport={{ once: true }}
             >
               <h2 className="text-3xl md:text-4xl font-bold font-serif bg-gradient-to-r from-amber-700 via-orange-600 to-amber-800 bg-clip-text text-transparent">
-                Feeling the screen time struggle? You&apos;re not alone.
+                Simple, Fun, and Built on Virtue.
               </h2>
               <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                Modern parenthood is a balancing act. You want to raise a kind, resilient, and thoughtful child, but the guilt of handing over a device just to get through the day is real. What if that screen could become your greatest tool for connection?
+                Every Optimist Farm story is built on our <strong>&quot;Six-Beat Story Engine&quot;</strong>—a simple, kid-friendly arc that makes learning virtues easy and fun. From a &quot;Problem&quot; to a &quot;Mentor chime&quot; from Ollie the Owl to a &quot;Climax/Win,&quot; your child will feel a sense of accomplishment in every story.
+              </p>
+              <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                Our content is guided by a <strong>12-Month Virtues Framework</strong>. We focus on one virtue a month, like Gratitude with Barnaby, Perseverance with Pearl, and Respect with Dugan.
               </p>
             </motion.div>
           </div>
         </section>
 
-        {/* Our Mission/Solution */}
+        {/* Meet the Characters */}
         <section className="py-16 bg-green-50/50">
           <div className="container mx-auto px-6">
             <motion.div
@@ -432,19 +435,22 @@ export default function Concept1() {
                 </div>
               </div>
               <div className="md:w-1/2">
-                <h3 className="text-3xl font-bold font-serif bg-gradient-to-r from-amber-700 via-orange-600 to-amber-800 bg-clip-text text-transparent">Our Mission: More Than Just Stories</h3>
+                <h3 className="text-3xl font-bold font-serif bg-gradient-to-r from-amber-700 via-orange-600 to-amber-800 bg-clip-text text-transparent">Meet the Core Twelve!</h3>
                 <p className="mt-4 text-lg text-gray-600 leading-relaxed">
-                  Optimist Farm was created to empower parents like you. We believe in turning passive screen time into active, shared moments of learning and love. Each of our stories is carefully crafted to embed timeless values—like gratitude, kindness, and resilience—into simple, engaging narratives that spark curiosity and conversation.
+                  Meet <strong>Lillie the Lamb</strong>, <strong>Pearl the Pig</strong>, Barnaby Bunny, and the whole Optimist Farm crew! Listen for <strong>Ollie the Owl&apos;s</strong> special &quot;soft chime&quot; when he shares his wisdom.
                 </p>
                 <p className="mt-4 text-lg text-gray-600 leading-relaxed">
-                  This isn&apos;t just about keeping your child entertained. It&apos;s about giving you a meaningful way to teach life&apos;s most important lessons, one story at a time.
+                  And don&apos;t forget <strong>Pippin the Snail</strong>! He&apos;s not in the story, he&apos;s in the <em>game</em>. Find him hidden on every page!
+                </p>
+                <p className="mt-4 text-lg text-gray-600 leading-relaxed">
+                  All characters are rendered in our new <strong>&quot;saturated, rainbow-forward&quot;</strong> style for a bright, optimistic feel.
                 </p>
               </div>
             </motion.div>
           </div>
         </section>
 
-        {/* How It Works */}
+        {/* Digital-First Features */}
         <section id="how-it-works" className="py-20 bg-[#FDFBF8]">
           <div className="container mx-auto px-6 text-center">
             <motion.div
@@ -454,11 +460,14 @@ export default function Concept1() {
               viewport={{ once: true }}
             >
               <h2 className="text-3xl md:text-4xl font-bold font-serif bg-gradient-to-r from-amber-700 via-orange-600 to-amber-800 bg-clip-text text-transparent">
-                Start Your Journey in 3 Simple Steps
+                A Richly Interactive &quot;Digital-First&quot; World
               </h2>
-              <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-12">
+              <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+                The 4 Digital Must-Haves that make every story an adventure
+              </p>
+              <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
 
-                {/* Step 1 */}
+                {/* Feature 1 */}
                 <motion.div
                   className="flex flex-col items-center group"
                   initial={{ opacity: 0, y: 30 }}
@@ -473,16 +482,16 @@ export default function Concept1() {
                     transition={{ duration: 0.5 }}
                   >
                     <svg className="w-12 h-12 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v11.494m-9-5.747h18" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
                     </svg>
                   </motion.div>
-                  <h3 className="mt-6 text-xl font-bold group-hover:text-orange-600 transition-colors">1. Join the Farm</h3>
+                  <h3 className="mt-6 text-xl font-bold group-hover:text-orange-600 transition-colors">Tap-and-Play Moments</h3>
                   <p className="mt-2 text-gray-600 text-center">
-                    Choose a subscription that fits your family and get instant access to our curated library of stories.
+                    Every spread has &quot;1 tap moments&quot;. Tap the pond for a <em>ripple</em>, tap the barn door for a <em>creak</em>, tap the bees for a <em>buzz</em>!
                   </p>
                 </motion.div>
 
-                {/* Step 2 */}
+                {/* Feature 2 */}
                 <motion.div
                   className="flex flex-col items-center group"
                   initial={{ opacity: 0, y: 30 }}
@@ -497,16 +506,16 @@ export default function Concept1() {
                     transition={{ duration: 0.5 }}
                   >
                     <svg className="w-12 h-12 text-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
                   </motion.div>
-                  <h3 className="mt-6 text-xl font-bold group-hover:text-green-700 transition-colors">2. Discover a New Story Monthly</h3>
+                  <h3 className="mt-6 text-xl font-bold group-hover:text-green-700 transition-colors">Seek-and-Find Pippin</h3>
                   <p className="mt-2 text-gray-600 text-center">
-                    A brand new, beautifully illustrated book arrives in your library every month, centered on a new value.
+                    A new game in every story! Pippin the Snail is hidden visually on <em>every single page</em>. Tap him for a cheerful &quot;Pippin smile&quot; sound!
                   </p>
                 </motion.div>
 
-                {/* Step 3 */}
+                {/* Feature 3 */}
                 <motion.div
                   className="flex flex-col items-center group"
                   initial={{ opacity: 0, y: 30 }}
@@ -520,20 +529,37 @@ export default function Concept1() {
                     whileHover={{ rotate: [0, -10, 10, -10, 0] }}
                     transition={{ duration: 0.5 }}
                   >
-                    <motion.svg
-                      className="w-12 h-12 text-blue-500"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      animate={{ scale: [1, 1.1, 1] }}
-                      transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                    </motion.svg>
+                    <svg className="w-12 h-12 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15.536a5 5 0 001.414 1.414m2.828-9.9a9 9 0 012.828 2.828" />
+                    </svg>
                   </motion.div>
-                  <h3 className="mt-6 text-xl font-bold group-hover:text-blue-600 transition-colors">3. Read & Connect Together</h3>
+                  <h3 className="mt-6 text-xl font-bold group-hover:text-blue-600 transition-colors">Cozy Narration & Sounds</h3>
                   <p className="mt-2 text-gray-600 text-center">
-                    Enjoy &quot;Connection Questions&quot; at the end of each story to spark meaningful conversations with your child.
+                    Toggle narration on or off. Our soft soundscapes (like a &quot;windmill whoosh&quot;) create a cozy, immersive experience.
+                  </p>
+                </motion.div>
+
+                {/* Feature 4 */}
+                <motion.div
+                  className="flex flex-col items-center group"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.4 }}
+                  viewport={{ once: true }}
+                  whileHover={{ y: -8, scale: 1.05 }}
+                >
+                  <motion.div
+                    className="bg-purple-100 rounded-full p-6 shadow-lg group-hover:shadow-2xl group-hover:bg-purple-200 transition-all duration-300"
+                    whileHover={{ rotate: [0, -10, 10, -10, 0] }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    <svg className="w-12 h-12 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                    </svg>
+                  </motion.div>
+                  <h3 className="mt-6 text-xl font-bold group-hover:text-purple-600 transition-colors">Accessible for All</h3>
+                  <p className="mt-2 text-gray-600 text-center">
+                    Designed for every family with a captions toggle, large tap targets, and a high-contrast visual mode.
                   </p>
                 </motion.div>
 
