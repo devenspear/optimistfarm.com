@@ -319,10 +319,10 @@ export default function Concept1() {
               viewport={{ once: true }}
             >
               <h2 className="text-3xl md:text-4xl font-bold text-center font-serif mb-4 bg-gradient-to-r from-amber-700 via-orange-600 to-amber-800 bg-clip-text text-transparent">
-                Our Story Library
+                A Library for Growing Virtues.
               </h2>
               <p className="text-lg text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-                Interactive stories designed for young minds and family bonding
+                Explore our &quot;rainbow-forward&quot; stories, each one built on a core virtue and packed with fun, interactive &quot;1 tap moments&quot;.
               </p>
 
               {/* Horizontal Scrolling Container */}
