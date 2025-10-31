@@ -11,7 +11,7 @@ const books = [
     title: "Bunny's Thank-You Garden",
     description: 'A magical story about gratitude and friendship',
     category: 'children',
-    image: '/Images/BunnyCover.png',
+    image: '/Images/BB1.png',
     href: '/books/bunnys-garden'
   },
   {

@@ -37,6 +37,13 @@ module.exports = {
       animation: {
         'bounce-gentle': 'bounce 2s infinite',
         'pulse-gentle': 'pulse 3s infinite',
+        'shimmer': 'shimmer 3s ease-in-out infinite',
+      },
+      keyframes: {
+        shimmer: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(100%)' },
+        },
       }
     },
   },

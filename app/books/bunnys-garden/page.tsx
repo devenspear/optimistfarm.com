@@ -152,25 +152,17 @@ export default function BunnysGardenHub() {
             {/* Book Cover */}
             <div className="rounded-2xl overflow-hidden shadow-2xl max-w-sm mx-auto lg:mx-0">
               <img
-                src="/Images/BunnyCover.png"
-                alt="Barnaby Bunny's Thank You Garden"
+                src="/Images/BB1.png"
+                alt="Bunny's Thank You Garden"
                 className="w-full h-auto"
               />
             </div>
 
             {/* Title & Tags */}
-            <div className="text-center lg:text-left space-y-6">
-              <div>
-                <p className="text-sm uppercase tracking-wide font-bold text-gray-500 mb-3">
-                  Interactive Story
-                </p>
-                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold font-serif bg-gradient-to-r from-amber-700 via-orange-600 to-amber-800 bg-clip-text text-transparent leading-tight mb-4">
-                  Barnaby Bunny&apos;s<br />Thank-You Garden
-                </h1>
-                <p className="text-base text-gray-600 leading-relaxed">
-                  By <span className="font-semibold text-gray-800">Nancy Jo Spear</span>
-                </p>
-              </div>
+            <div className="text-center lg:text-left space-y-4">
+              <p className="text-sm uppercase tracking-wide font-bold text-gray-500">
+                Interactive Story
+              </p>
 
               <div className="flex flex-wrap gap-2.5 justify-center lg:justify-start">
                 <span className="px-3.5 py-1.5 bg-green-100 text-green-800 rounded-lg text-xs font-bold uppercase tracking-wide">
@@ -189,10 +181,19 @@ export default function BunnysGardenHub() {
                 <motion.button
                   whileHover={{ scale: 1.02, y: -2 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full bg-gradient-to-r from-green-600 to-emerald-600 text-white font-bold py-4 px-8 rounded-2xl shadow-xl hover:shadow-2xl hover:from-green-700 hover:to-emerald-700 transition-all flex items-center justify-center gap-3 text-lg"
+                  animate={{
+                    scale: [1, 1.02, 1],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                  className="relative overflow-hidden w-full bg-gradient-to-r from-green-600 to-emerald-600 text-white font-bold py-4 px-8 rounded-2xl shadow-xl hover:shadow-2xl hover:from-green-700 hover:to-emerald-700 transition-all flex items-center justify-center gap-3 text-lg"
                 >
-                  <Play className="w-5 h-5 fill-white" />
-                  Read Together Now
+                  <span className="absolute inset-0 animate-shimmer bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+                  <Play className="w-5 h-5 fill-white relative z-10" />
+                  <span className="relative z-10">Read Together Now</span>
                 </motion.button>
               </Link>
             </div>
@@ -241,7 +242,10 @@ export default function BunnysGardenHub() {
           >
             {/* Header */}
             <div className="space-y-3">
-              <h2 className="text-2xl md:text-3xl font-bold font-serif bg-gradient-to-r from-amber-700 via-orange-600 to-amber-800 bg-clip-text text-transparent">
+              <h1 className="text-3xl md:text-4xl font-bold font-serif bg-gradient-to-r from-amber-700 via-orange-600 to-amber-800 bg-clip-text text-transparent">
+                Bunny&apos;s Thank-You Garden
+              </h1>
+              <h2 className="text-xl md:text-2xl font-semibold text-gray-800">
                 Bring the Story to Life
               </h2>
               <p className="text-gray-600 text-base leading-relaxed">
