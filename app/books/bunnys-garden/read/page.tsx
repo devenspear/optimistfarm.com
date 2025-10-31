@@ -1,7 +1,7 @@
 'use client'
 
-import BookReader from '@/components/BookReader'
+import ImmersiveBookReader from '@/components/ImmersiveBookReader'
 
 export default function BunnysGardenReader() {
-  return <BookReader />
+  return <ImmersiveBookReader />
 }
