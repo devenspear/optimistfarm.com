@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useMemo } from 'react'
 import { motion } from 'framer-motion'
 import { Check, Heart, ChevronLeft, ChevronRight } from 'lucide-react'
 import Link from 'next/link'
@@ -115,7 +115,29 @@ const books = [
 export default function Concept1() {
   const [isMobile, setIsMobile] = useState(false)
   const [currentSlide, setCurrentSlide] = useState(0)
+  const [mounted, setMounted] = useState(false)
   const scrollContainerRef = useRef<HTMLDivElement>(null)
+
+  // Generate flower animation data once on mount to avoid hydration mismatch
+  const flowerData = useMemo(() => {
+    return Array.from({ length: 15 }, (_, i) => ({
+      startX: Math.random() * 100,
+      startY: Math.random() * 100,
+      midX1: Math.random() * 100,
+      midY1: Math.random() * 100,
+      midX2: Math.random() * 100,
+      midY2: Math.random() * 100,
+      endX: Math.random() * 100,
+      endY: Math.random() * 100,
+      duration: 65 + Math.random() * 52,
+      delay: Math.random() * 10,
+      sizeClass: ['text-xl', 'text-2xl', 'text-3xl', 'text-4xl'][Math.floor(Math.random() * 4)],
+      baseScale: 0.3 + Math.random() * 0.4,
+      maxScale: 0.8 + Math.random() * 0.8,
+      endScale: 0.2 + Math.random() * 0.2,
+      flower: ['🌸', '🌺', '🌼', '🌻', '🌷', '🏵️'][i % 6]
+    }))
+  }, [])
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollContainerRef.current) {
@@ -126,6 +148,10 @@ export default function Concept1() {
       })
     }
   }
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   useEffect(() => {
     const checkDevice = () => {
@@ -203,72 +229,58 @@ export default function Concept1() {
           }}></div>
 
           {/* Animated Flowers */}
-          <div className="absolute inset-0 pointer-events-none z-20">
-            {[...Array(15)].map((_, i) => {
-              const startX = Math.random() * 100;
-              const startY = Math.random() * 100;
-              const midX1 = Math.random() * 100;
-              const midY1 = Math.random() * 100;
-              const midX2 = Math.random() * 100;
-              const midY2 = Math.random() * 100;
-              const endX = Math.random() * 100;
-              const endY = Math.random() * 100;
-              const duration = 65 + Math.random() * 52;
-              const delay = Math.random() * 10;
+          {mounted && (
+            <div className="absolute inset-0 pointer-events-none z-20">
+              {flowerData.map((flower, i) => {
+                const midScale1 = flower.baseScale + (flower.maxScale - flower.baseScale) * 0.65;
+                const midScale2 = flower.baseScale + (flower.maxScale - flower.baseScale) * 0.45;
 
-              // Random size and scale for each flower
-              const randomSizeClass = ['text-xl', 'text-2xl', 'text-3xl', 'text-4xl'][Math.floor(Math.random() * 4)];
-              const baseScale = 0.3 + Math.random() * 0.4; // 0.3-0.7
-              const maxScale = 0.8 + Math.random() * 0.8; // 0.8-1.6
-              const midScale1 = baseScale + (maxScale - baseScale) * 0.65;
-              const midScale2 = baseScale + (maxScale - baseScale) * 0.45;
-              const endScale = 0.2 + Math.random() * 0.2; // 0.2-0.4
-
-              return (
-                <motion.div
-                  key={i}
-                  className={`absolute ${randomSizeClass}`}
-                  style={{
-                    left: 0,
-                    top: 0
-                  }}
-                  initial={{
-                    x: `${startX}vw`,
-                    y: `${startY}vh`,
-                    opacity: 0,
-                    scale: baseScale
-                  }}
-                  animate={{
-                    x: [
-                      `${startX}vw`,
-                      `${midX1}vw`,
-                      `${midX2}vw`,
-                      `${endX}vw`,
-                      `${startX}vw`
-                    ],
-                    y: [
-                      `${startY}vh`,
-                      `${midY1}vh`,
-                      `${midY2}vh`,
-                      `${endY}vh`,
-                      `${startY}vh`
-                    ],
-                    opacity: [0, 0.7, 0.5, 0.3, 0],
-                    scale: [baseScale, maxScale, midScale1, midScale2, endScale],
-                    rotate: [0, 120, 240, 360]
-                  }}
-                  transition={{
-                    duration: duration,
-                    repeat: Infinity,
-                    delay: delay,
-                    ease: "easeInOut"
-                  }}
-                >
-                  {['🌸', '🌺', '🌼', '🌻', '🌷', '🏵️'][i % 6]}
-                </motion.div>
-              );
-            })}
-          </div>
+                return (
+                  <motion.div
+                    key={i}
+                    className={`absolute ${flower.sizeClass}`}
+                    style={{
+                      left: 0,
+                      top: 0
+                    }}
+                    initial={{
+                      x: `${flower.startX}vw`,
+                      y: `${flower.startY}vh`,
+                      opacity: 0,
+                      scale: flower.baseScale
+                    }}
+                    animate={{
+                      x: [
+                        `${flower.startX}vw`,
+                        `${flower.midX1}vw`,
+                        `${flower.midX2}vw`,
+                        `${flower.endX}vw`,
+                        `${flower.startX}vw`
+                      ],
+                      y: [
+                        `${flower.startY}vh`,
+                        `${flower.midY1}vh`,
+                        `${flower.midY2}vh`,
+                        `${flower.endY}vh`,
+                        `${flower.startY}vh`
+                      ],
+                      opacity: [0, 0.7, 0.5, 0.3, 0],
+                      scale: [flower.baseScale, flower.maxScale, midScale1, midScale2, flower.endScale],
+                      rotate: [0, 120, 240, 360]
+                    }}
+                    transition={{
+                      duration: flower.duration,
+                      repeat: Infinity,
+                      delay: flower.delay,
+                      ease: "easeInOut"
+                    }}
+                  >
+                    {flower.flower}
+                  </motion.div>
+                );
+              })}
+            </div>
+          )}
 
           <div className="container mx-auto px-6 relative z-10">
             <motion.div
