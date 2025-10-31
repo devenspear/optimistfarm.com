@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { Check, Heart, ChevronLeft, ChevronRight } from 'lucide-react'
 import Link from 'next/link'
@@ -13,25 +13,118 @@ const books = [
     category: 'children',
     image: '/Images/BunnyCover.png',
     href: '/books/bunnys-garden'
+  },
+  {
+    id: 'ollies-gratitude-surprise',
+    title: "Ollie's Gratitude Surprise",
+    description: 'Discover the joy of unexpected thankfulness',
+    category: 'children',
+    image: '/Images/PlaceholderCover.png',
+    href: '#'
+  },
+  {
+    id: 'ollie-first-seed',
+    title: "Ollie and the Story of the First Seed",
+    description: 'A tale of growth and new beginnings',
+    category: 'children',
+    image: '/Images/PlaceholderCover.png',
+    href: '#'
+  },
+  {
+    id: 'clementines-drumbeat',
+    title: "Clementine's Different Drumbeat",
+    description: 'Learning respect through unique rhythms',
+    category: 'children',
+    image: '/Images/PlaceholderCover.png',
+    href: '#'
+  },
+  {
+    id: 'lil-dax-windmill',
+    title: "Lil Dax and the Whispering Windmill",
+    description: 'A curious adventure full of wonder',
+    category: 'children',
+    image: '/Images/PlaceholderCover.png',
+    href: '#'
+  },
+  {
+    id: 'pearls-comeback',
+    title: "Pearl's Muddy Day Comeback",
+    description: 'Building resilience through challenges',
+    category: 'children',
+    image: '/Images/PlaceholderCover.png',
+    href: '#'
+  },
+  {
+    id: 'dugan-pawprints',
+    title: "Dugan and the Pawprints of Trust",
+    description: 'Following the path of friendship and faith',
+    category: 'children',
+    image: '/Images/PlaceholderCover.png',
+    href: '#'
+  },
+  {
+    id: 'gus-wobbly-barrel',
+    title: "Gus the Goat and the Wobbly Barrel",
+    description: 'Persevering through tricky situations',
+    category: 'children',
+    image: '/Images/PlaceholderCover.png',
+    href: '#'
+  },
+  {
+    id: 'christy-meadow',
+    title: "Christy Cow's Gentle Meadow of Kindness",
+    description: 'Spreading kindness one step at a time',
+    category: 'children',
+    image: '/Images/PlaceholderCover.png',
+    href: '#'
+  },
+  {
+    id: 'snip-sharing-pile',
+    title: "Snip the Squirrel's Sharing Pile",
+    description: 'Learning the joy of giving and sharing',
+    category: 'children',
+    image: '/Images/PlaceholderCover.png',
+    href: '#'
+  },
+  {
+    id: 'lillie-patient-picnic',
+    title: "Lillie Lamb's Patient Picnic",
+    description: 'Discovering the rewards of patience',
+    category: 'children',
+    image: '/Images/PlaceholderCover.png',
+    href: '#'
+  },
+  {
+    id: 'dixie-tidy-task',
+    title: "Dixie Duck's Tidy-Up Task",
+    description: 'Taking responsibility with pride',
+    category: 'children',
+    image: '/Images/PlaceholderCover.png',
+    href: '#'
+  },
+  {
+    id: 'posie-brave-words',
+    title: "Posie Piglet's Brave, True Words",
+    description: 'Finding courage in honesty',
+    category: 'children',
+    image: '/Images/PlaceholderCover.png',
+    href: '#'
   }
 ]
 
 export default function Concept1() {
   const [isMobile, setIsMobile] = useState(false)
   const [currentSlide, setCurrentSlide] = useState(0)
+  const scrollContainerRef = useRef<HTMLDivElement>(null)
 
-  // Create array with 1 real book + 2 coming soon placeholders
-  const allBooks = [...books,
-    { id: 'coming-soon-1', title: 'Coming Soon', description: 'More magical stories on the way', isComingSoon: true },
-    { id: 'coming-soon-2', title: 'Coming Soon', description: 'More magical stories on the way', isComingSoon: true }
-  ]
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % allBooks.length)
-  }
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + allBooks.length) % allBooks.length)
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollContainerRef.current) {
+      const scrollAmount = 400
+      scrollContainerRef.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth'
+      })
+    }
   }
 
   useEffect(() => {
@@ -136,7 +229,7 @@ export default function Concept1() {
           </div>
         </section>
 
-        {/* Library Section - Featured Book */}
+        {/* Library Section - Horizontal Scrolling */}
         <section id="books" className="py-16 bg-white/40">
           <div className="container mx-auto px-6">
             <motion.div
@@ -152,82 +245,81 @@ export default function Concept1() {
                 Interactive stories designed for young minds and family bonding
               </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
-                {books.map((book, index) => (
-                  <motion.div
-                    key={book.id}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                    whileHover={{ scale: isMobile ? 1 : 1.05, y: isMobile ? 0 : -8 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="group"
-                  >
-                    <Link href={book.href} className="block">
-                      <div className="relative bg-white/80 backdrop-blur-lg rounded-2xl p-6 shadow-xl border border-white/20 hover:bg-white hover:shadow-2xl transition-all duration-300 overflow-hidden">
-                        <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/0 to-blue-500/0 group-hover:from-emerald-500/5 group-hover:to-blue-500/5 transition-all duration-300"></div>
-                        <div className="relative aspect-square rounded-xl mb-4 overflow-hidden bg-gradient-to-br from-emerald-300 to-blue-300 group-hover:shadow-lg transition-shadow duration-300">
-                          <motion.img
-                            src={book.image}
-                            alt={book.title}
-                            className="w-full h-full object-cover"
-                            whileHover={{ scale: 1.05 }}
-                            transition={{ duration: 0.3 }}
-                          />
-                        </div>
-                        <h3 className="relative text-xl font-bold text-gray-900 mb-2 group-hover:text-green-700 transition-colors">
-                          {book.title}
-                        </h3>
-                        <p className="relative text-gray-600 text-sm leading-relaxed">
-                          {book.description}
-                        </p>
-                        <div className="relative mt-4">
-                          <span className="inline-flex items-center text-green-700 font-semibold text-sm group-hover:translate-x-1 transition-transform duration-300">
-                            Read Now
-                            <motion.svg
-                              className="w-4 h-4 ml-1"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                              animate={{ x: [0, 4, 0] }}
-                              transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-                            >
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                            </motion.svg>
-                          </span>
-                        </div>
-                      </div>
-                    </Link>
-                  </motion.div>
-                ))}
+              {/* Horizontal Scrolling Container */}
+              <div className="relative group">
+                {/* Left Arrow */}
+                <button
+                  onClick={() => scroll('left')}
+                  className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white p-3 rounded-full shadow-lg hover:shadow-xl transition-all opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0"
+                  aria-label="Scroll left"
+                >
+                  <ChevronLeft className="w-6 h-6 text-gray-800" />
+                </button>
 
-                {/* Coming Soon Cards */}
-                {[1, 2, 3].map((index) => (
-                  <motion.div
-                    key={`coming-soon-${index}`}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: (books.length + index) * 0.1 }}
-                    viewport={{ once: true }}
-                    whileHover={{ scale: isMobile ? 1 : 1.03 }}
-                    className="bg-white/60 backdrop-blur-lg rounded-2xl p-6 shadow-lg border border-white/20 hover:shadow-xl transition-all duration-300"
-                  >
+                {/* Right Arrow */}
+                <button
+                  onClick={() => scroll('right')}
+                  className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white p-3 rounded-full shadow-lg hover:shadow-xl transition-all opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0"
+                  aria-label="Scroll right"
+                >
+                  <ChevronRight className="w-6 h-6 text-gray-800" />
+                </button>
+
+                {/* Scrollable Books Container */}
+                <div
+                  ref={scrollContainerRef}
+                  className="flex gap-6 overflow-x-auto pb-4 px-2 scrollbar-hide snap-x snap-mandatory"
+                  style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                >
+                  {books.map((book, index) => (
                     <motion.div
-                      className="aspect-square bg-gradient-to-br from-indigo-200 to-purple-300 rounded-xl mb-4 flex items-center justify-center text-4xl"
-                      animate={{ rotate: [0, 5, -5, 0] }}
-                      transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
+                      key={book.id}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.4, delay: index * 0.05 }}
+                      viewport={{ once: true }}
+                      whileHover={{ scale: isMobile ? 1 : 1.05, y: isMobile ? 0 : -8 }}
+                      whileTap={{ scale: 0.98 }}
+                      className="group flex-shrink-0 w-72 snap-center"
                     >
-                      ✨
+                      <Link href={book.href} className="block">
+                        <div className="relative bg-white/80 backdrop-blur-lg rounded-2xl p-6 shadow-xl border border-white/20 hover:bg-white hover:shadow-2xl transition-all duration-300 overflow-hidden h-full">
+                          <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/0 to-blue-500/0 group-hover:from-emerald-500/5 group-hover:to-blue-500/5 transition-all duration-300"></div>
+                          <div className="relative aspect-square rounded-xl mb-4 overflow-hidden bg-gradient-to-br from-emerald-300 to-blue-300 group-hover:shadow-lg transition-shadow duration-300">
+                            <motion.img
+                              src={book.image}
+                              alt={book.title}
+                              className="w-full h-full object-cover"
+                              whileHover={{ scale: 1.05 }}
+                              transition={{ duration: 0.3 }}
+                            />
+                          </div>
+                          <h3 className="relative text-xl font-bold text-gray-900 mb-2 group-hover:text-green-700 transition-colors">
+                            {book.title}
+                          </h3>
+                          <p className="relative text-gray-600 text-sm leading-relaxed">
+                            {book.description}
+                          </p>
+                          <div className="relative mt-4">
+                            <span className="inline-flex items-center text-green-700 font-semibold text-sm group-hover:translate-x-1 transition-transform duration-300">
+                              Read Now
+                              <motion.svg
+                                className="w-4 h-4 ml-1"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                animate={{ x: [0, 4, 0] }}
+                                transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+                              >
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                              </motion.svg>
+                            </span>
+                          </div>
+                        </div>
+                      </Link>
                     </motion.div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">
-                      Coming Soon
-                    </h3>
-                    <p className="text-gray-600 text-sm">
-                      More magical stories on the way
-                    </p>
-                  </motion.div>
-                ))}
+                  ))}
+                </div>
               </div>
             </motion.div>
           </div>
