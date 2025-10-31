@@ -202,6 +202,74 @@ export default function Concept1() {
             backgroundAttachment: 'fixed'
           }}></div>
 
+          {/* Animated Flowers */}
+          <div className="absolute inset-0 pointer-events-none z-20">
+            {[...Array(15)].map((_, i) => {
+              const startX = Math.random() * 100;
+              const startY = Math.random() * 100;
+              const midX1 = Math.random() * 100;
+              const midY1 = Math.random() * 100;
+              const midX2 = Math.random() * 100;
+              const midY2 = Math.random() * 100;
+              const endX = Math.random() * 100;
+              const endY = Math.random() * 100;
+              const duration = 65 + Math.random() * 52;
+              const delay = Math.random() * 10;
+
+              // Random size and scale for each flower
+              const randomSizeClass = ['text-xl', 'text-2xl', 'text-3xl', 'text-4xl'][Math.floor(Math.random() * 4)];
+              const baseScale = 0.3 + Math.random() * 0.4; // 0.3-0.7
+              const maxScale = 0.8 + Math.random() * 0.8; // 0.8-1.6
+              const midScale1 = baseScale + (maxScale - baseScale) * 0.65;
+              const midScale2 = baseScale + (maxScale - baseScale) * 0.45;
+              const endScale = 0.2 + Math.random() * 0.2; // 0.2-0.4
+
+              return (
+                <motion.div
+                  key={i}
+                  className={`absolute ${randomSizeClass}`}
+                  style={{
+                    left: 0,
+                    top: 0
+                  }}
+                  initial={{
+                    x: `${startX}vw`,
+                    y: `${startY}vh`,
+                    opacity: 0,
+                    scale: baseScale
+                  }}
+                  animate={{
+                    x: [
+                      `${startX}vw`,
+                      `${midX1}vw`,
+                      `${midX2}vw`,
+                      `${endX}vw`,
+                      `${startX}vw`
+                    ],
+                    y: [
+                      `${startY}vh`,
+                      `${midY1}vh`,
+                      `${midY2}vh`,
+                      `${endY}vh`,
+                      `${startY}vh`
+                    ],
+                    opacity: [0, 0.7, 0.5, 0.3, 0],
+                    scale: [baseScale, maxScale, midScale1, midScale2, endScale],
+                    rotate: [0, 120, 240, 360]
+                  }}
+                  transition={{
+                    duration: duration,
+                    repeat: Infinity,
+                    delay: delay,
+                    ease: "easeInOut"
+                  }}
+                >
+                  {['🌸', '🌺', '🌼', '🌻', '🌷', '🏵️'][i % 6]}
+                </motion.div>
+              );
+            })}
+          </div>
+
           <div className="container mx-auto px-6 relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -230,7 +298,7 @@ export default function Concept1() {
         </section>
 
         {/* Library Section - Featured Book */}
-        <section id="books" className="py-16 bg-white/40">
+        <section id="books" className="pt-8 pb-16 bg-white/40">
           <div className="container mx-auto px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -238,7 +306,7 @@ export default function Concept1() {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-center text-green-950 font-serif mb-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-center font-serif mb-4 bg-gradient-to-r from-amber-700 via-orange-600 to-amber-800 bg-clip-text text-transparent">
                 Our Story Library
               </h2>
               <p className="text-lg text-gray-600 text-center mb-12 max-w-2xl mx-auto">
@@ -334,7 +402,7 @@ export default function Concept1() {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-green-950 font-serif">
+              <h2 className="text-3xl md:text-4xl font-bold font-serif bg-gradient-to-r from-amber-700 via-orange-600 to-amber-800 bg-clip-text text-transparent">
                 Feeling the screen time struggle? You&apos;re not alone.
               </h2>
               <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
@@ -364,7 +432,7 @@ export default function Concept1() {
                 </div>
               </div>
               <div className="md:w-1/2">
-                <h3 className="text-3xl font-bold text-green-950 font-serif">Our Mission: More Than Just Stories</h3>
+                <h3 className="text-3xl font-bold font-serif bg-gradient-to-r from-amber-700 via-orange-600 to-amber-800 bg-clip-text text-transparent">Our Mission: More Than Just Stories</h3>
                 <p className="mt-4 text-lg text-gray-600 leading-relaxed">
                   Optimist Farm was created to empower parents like you. We believe in turning passive screen time into active, shared moments of learning and love. Each of our stories is carefully crafted to embed timeless values—like gratitude, kindness, and resilience—into simple, engaging narratives that spark curiosity and conversation.
                 </p>
@@ -385,7 +453,7 @@ export default function Concept1() {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-green-950 font-serif">
+              <h2 className="text-3xl md:text-4xl font-bold font-serif bg-gradient-to-r from-amber-700 via-orange-600 to-amber-800 bg-clip-text text-transparent">
                 Start Your Journey in 3 Simple Steps
               </h2>
               <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -494,7 +562,7 @@ export default function Concept1() {
                 </div>
               </div>
               <div className="md:w-7/12">
-                <h2 className="text-3xl md:text-4xl font-bold text-green-950 font-serif mb-6">
+                <h2 className="text-3xl md:text-4xl font-bold font-serif mb-6 bg-gradient-to-r from-amber-700 via-orange-600 to-amber-800 bg-clip-text text-transparent">
                   Meet the Author
                 </h2>
                 <div className="prose prose-lg text-gray-600 leading-relaxed space-y-4">
@@ -526,7 +594,7 @@ export default function Concept1() {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-green-950 font-serif">
+              <h2 className="text-3xl md:text-4xl font-bold font-serif bg-gradient-to-r from-amber-700 via-orange-600 to-amber-800 bg-clip-text text-transparent">
                 Find the Perfect Plan for Your Family
               </h2>
               <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
@@ -650,7 +718,7 @@ export default function Concept1() {
                 </div>
               </div>
               <div className="md:w-1/2">
-                <h3 className="text-3xl font-bold text-green-950 font-serif">
+                <h3 className="text-3xl font-bold font-serif bg-gradient-to-r from-amber-700 via-orange-600 to-amber-800 bg-clip-text text-transparent">
                   You&apos;re Not Parenting Alone
                 </h3>
                 <p className="mt-4 text-lg text-gray-600 leading-relaxed">
@@ -673,7 +741,7 @@ export default function Concept1() {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl font-bold text-center text-green-950 font-serif">
+              <h2 className="text-3xl font-bold text-center font-serif bg-gradient-to-r from-amber-700 via-orange-600 to-amber-800 bg-clip-text text-transparent">
                 What Our Families Are Saying
               </h2>
               <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
