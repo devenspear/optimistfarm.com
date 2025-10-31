@@ -99,33 +99,58 @@ export default function BunnysGardenHub() {
     <div className="min-h-screen bg-gradient-to-b from-[#FDFBF8] to-orange-50/30">
       {/* Header */}
       <header className="bg-[#FDFBF8]/95 backdrop-blur-md sticky top-0 z-50 border-b border-gray-200/50 shadow-sm">
-        <div className="container mx-auto px-6 py-4 flex justify-between items-center">
+        <div className="container mx-auto px-6 py-5 flex justify-between items-center">
           <Link href="/" className="flex items-center space-x-3">
             <img
               src="/Images/OptiFarm-Logo2.svg"
               alt="Optimist Farm"
-              className="h-12 w-auto"
+              className="h-11 w-auto"
             />
           </Link>
-          <Link href="/" className="text-gray-600 hover:text-amber-700 transition-colors font-semibold">
-            ← Back to Library
+          <Link href="/">
+            <motion.button
+              whileHover={{ scale: 1.05, x: -4 }}
+              whileTap={{ scale: 0.95 }}
+              className="flex items-center gap-2 px-4 py-2.5 bg-white border-2 border-gray-200 hover:border-amber-500 rounded-xl transition-all shadow-sm hover:shadow-md group"
+            >
+              <motion.svg
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                fill="none"
+                className="text-gray-600 group-hover:text-amber-700 transition-colors"
+                animate={{ x: [-2, 0, -2] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <path
+                  d="M12.5 15L7.5 10L12.5 5"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </motion.svg>
+              <span className="text-sm font-semibold text-gray-700 group-hover:text-amber-700 transition-colors">
+                Back to Library
+              </span>
+            </motion.button>
           </Link>
         </div>
       </header>
 
       {/* Main Content - Two Column Layout */}
-      <div className="container mx-auto px-6 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <div className="container mx-auto px-6 py-8 md:py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12">
 
           {/* Column 1: The Story (Launchpad) */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            className="space-y-6"
+            className="lg:col-span-2 space-y-8"
           >
             {/* Book Cover */}
-            <div className="rounded-2xl overflow-hidden shadow-2xl max-w-md mx-auto lg:mx-0">
+            <div className="rounded-2xl overflow-hidden shadow-2xl max-w-sm mx-auto lg:mx-0">
               <img
                 src="/Images/BunnyCover.png"
                 alt="Barnaby Bunny's Thank You Garden"
@@ -134,58 +159,73 @@ export default function BunnysGardenHub() {
             </div>
 
             {/* Title & Tags */}
-            <div className="text-center lg:text-left">
-              <h1 className="text-4xl md:text-5xl font-bold font-serif bg-gradient-to-r from-amber-700 via-orange-600 to-amber-800 bg-clip-text text-transparent mb-4">
-                Barnaby Bunny&apos;s Thank-You Garden
-              </h1>
-              <div className="flex flex-wrap gap-2 justify-center lg:justify-start mb-6">
-                <span className="px-4 py-2 bg-green-100 text-green-800 rounded-full text-sm font-semibold">
-                  Virtue: Gratitude
+            <div className="text-center lg:text-left space-y-6">
+              <div>
+                <p className="text-sm uppercase tracking-wide font-bold text-gray-500 mb-3">
+                  Interactive Story
+                </p>
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold font-serif bg-gradient-to-r from-amber-700 via-orange-600 to-amber-800 bg-clip-text text-transparent leading-tight mb-4">
+                  Barnaby Bunny&apos;s<br />Thank-You Garden
+                </h1>
+                <p className="text-base text-gray-600 leading-relaxed">
+                  By <span className="font-semibold text-gray-800">Nancy Jo Spear</span>
+                </p>
+              </div>
+
+              <div className="flex flex-wrap gap-2.5 justify-center lg:justify-start">
+                <span className="px-3.5 py-1.5 bg-green-100 text-green-800 rounded-lg text-xs font-bold uppercase tracking-wide">
+                  Gratitude
                 </span>
-                <span className="px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-semibold">
-                  Virtue: Patience
+                <span className="px-3.5 py-1.5 bg-blue-100 text-blue-800 rounded-lg text-xs font-bold uppercase tracking-wide">
+                  Patience
                 </span>
-                <span className="px-4 py-2 bg-purple-100 text-purple-800 rounded-full text-sm font-semibold">
-                  Character: Barnaby
+                <span className="px-3.5 py-1.5 bg-purple-100 text-purple-800 rounded-lg text-xs font-bold uppercase tracking-wide">
+                  Barnaby
                 </span>
               </div>
 
               {/* Call to Action */}
-              <Link href="/books/bunnys-garden/read">
+              <Link href="/books/bunnys-garden/read" className="block">
                 <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-full max-w-md bg-gradient-to-r from-green-600 to-emerald-600 text-white font-bold py-5 px-8 rounded-full shadow-xl hover:from-green-700 hover:to-emerald-700 transition-all flex items-center justify-center gap-3 text-lg"
+                  whileHover={{ scale: 1.02, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="w-full bg-gradient-to-r from-green-600 to-emerald-600 text-white font-bold py-4 px-8 rounded-2xl shadow-xl hover:shadow-2xl hover:from-green-700 hover:to-emerald-700 transition-all flex items-center justify-center gap-3 text-lg"
                 >
-                  <Play className="w-6 h-6" />
+                  <Play className="w-5 h-5 fill-white" />
                   Read Together Now
                 </motion.button>
               </Link>
             </div>
 
             {/* Features List */}
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg space-y-4">
-              <h3 className="text-xl font-bold text-gray-900 mb-4">What's Inside:</h3>
-              <div className="space-y-3">
-                <div className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-1" />
-                  <div>
-                    <p className="font-semibold text-gray-900">Tap-and-Play Fun</p>
-                    <p className="text-gray-600 text-sm">Find all the &quot;1 tap moments&quot;!</p>
+            <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+              <h3 className="text-lg font-bold text-gray-900 mb-5">What&apos;s Inside:</h3>
+              <div className="space-y-4">
+                <div className="flex items-start gap-3.5">
+                  <div className="flex-shrink-0 w-5 h-5 rounded-full bg-green-100 flex items-center justify-center mt-0.5">
+                    <Check className="w-3.5 h-3.5 text-green-700" strokeWidth={3} />
+                  </div>
+                  <div className="flex-1">
+                    <p className="font-bold text-gray-900 text-sm mb-0.5">Tap-and-Play Fun</p>
+                    <p className="text-gray-600 text-sm leading-relaxed">Find all the &quot;1 tap moments&quot;!</p>
                   </div>
                 </div>
-                <div className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-1" />
-                  <div>
-                    <p className="font-semibold text-gray-900">Seek-and-Find Game</p>
-                    <p className="text-gray-600 text-sm">Can you spot Pippin the Snail on every page?</p>
+                <div className="flex items-start gap-3.5">
+                  <div className="flex-shrink-0 w-5 h-5 rounded-full bg-green-100 flex items-center justify-center mt-0.5">
+                    <Check className="w-3.5 h-3.5 text-green-700" strokeWidth={3} />
+                  </div>
+                  <div className="flex-1">
+                    <p className="font-bold text-gray-900 text-sm mb-0.5">Seek-and-Find Game</p>
+                    <p className="text-gray-600 text-sm leading-relaxed">Can you spot Pippin the Snail on every page?</p>
                   </div>
                 </div>
-                <div className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-1" />
-                  <div>
-                    <p className="font-semibold text-gray-900">Cozy Narration</p>
-                    <p className="text-gray-600 text-sm">Read-along or listen in with soft, cozy sounds.</p>
+                <div className="flex items-start gap-3.5">
+                  <div className="flex-shrink-0 w-5 h-5 rounded-full bg-green-100 flex items-center justify-center mt-0.5">
+                    <Check className="w-3.5 h-3.5 text-green-700" strokeWidth={3} />
+                  </div>
+                  <div className="flex-1">
+                    <p className="font-bold text-gray-900 text-sm mb-0.5">Cozy Narration</p>
+                    <p className="text-gray-600 text-sm leading-relaxed">Read-along or listen in with soft, cozy sounds.</p>
                   </div>
                 </div>
               </div>
@@ -197,56 +237,62 @@ export default function BunnysGardenHub() {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="space-y-6"
+            className="lg:col-span-3 space-y-6"
           >
             {/* Header */}
-            <div>
-              <h2 className="text-3xl font-bold font-serif bg-gradient-to-r from-amber-700 via-orange-600 to-amber-800 bg-clip-text text-transparent mb-2">
+            <div className="space-y-3">
+              <h2 className="text-2xl md:text-3xl font-bold font-serif bg-gradient-to-r from-amber-700 via-orange-600 to-amber-800 bg-clip-text text-transparent">
                 Bring the Story to Life
               </h2>
-              <p className="text-gray-600 text-lg">
-                Your family&apos;s guide to practicing Gratitude & Patience.
+              <p className="text-gray-600 text-base leading-relaxed">
+                Your family&apos;s guide to practicing <strong className="text-gray-800">Gratitude</strong> & <strong className="text-gray-800">Patience</strong>.
               </p>
             </div>
 
             {/* Filter Bar */}
-            <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 shadow-md space-y-3">
-              <div className="flex flex-wrap gap-2">
-                <span className="text-sm font-semibold text-gray-700">By Type:</span>
-                {['all', 'craft', 'game', 'conversation'].map((type) => (
-                  <button
-                    key={type}
-                    onClick={() => setFilterType(type as any)}
-                    className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
-                      filterType === type
-                        ? 'bg-amber-600 text-white'
-                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                    }`}
-                  >
-                    {type.charAt(0).toUpperCase() + type.slice(1)}
-                  </button>
-                ))}
-              </div>
-              <div className="flex flex-wrap gap-2">
-                <span className="text-sm font-semibold text-gray-700">By Time:</span>
-                {['all', '1-min', '5-min', '10-min'].map((time) => (
-                  <button
-                    key={time}
-                    onClick={() => setFilterTime(time as any)}
-                    className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
-                      filterTime === time
-                        ? 'bg-amber-600 text-white'
-                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                    }`}
-                  >
-                    {time.charAt(0).toUpperCase() + time.slice(1)}
-                  </button>
-                ))}
+            <div className="bg-white rounded-xl p-5 shadow-md border border-gray-200">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+                <div className="flex items-center flex-wrap gap-2">
+                  <span className="text-xs font-bold text-gray-500 uppercase tracking-wide mr-1">Type:</span>
+                  {['all', 'craft', 'game', 'conversation'].map((type) => (
+                    <motion.button
+                      key={type}
+                      onClick={() => setFilterType(type as any)}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className={`px-3.5 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wide transition-all ${
+                        filterType === type
+                          ? 'bg-amber-600 text-white shadow-md'
+                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      }`}
+                    >
+                      {type}
+                    </motion.button>
+                  ))}
+                </div>
+                <div className="flex items-center flex-wrap gap-2 sm:border-l sm:border-gray-200 sm:pl-4">
+                  <span className="text-xs font-bold text-gray-500 uppercase tracking-wide mr-1">Time:</span>
+                  {['all', '1-min', '5-min', '10-min'].map((time) => (
+                    <motion.button
+                      key={time}
+                      onClick={() => setFilterTime(time as any)}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className={`px-3.5 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wide transition-all ${
+                        filterTime === time
+                          ? 'bg-blue-600 text-white shadow-md'
+                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      }`}
+                    >
+                      {time}
+                    </motion.button>
+                  ))}
+                </div>
               </div>
             </div>
 
             {/* Story Seeds Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {filteredSeeds.map((seed) => (
                 <motion.div
                   key={seed.id}
@@ -257,68 +303,75 @@ export default function BunnysGardenHub() {
                 >
                   {seed.locked ? (
                     // Locked Card
-                    <div className="bg-white/60 backdrop-blur-sm rounded-xl p-5 shadow-md border-2 border-dashed border-gray-300 relative overflow-hidden">
-                      <div className="absolute inset-0 bg-gradient-to-br from-gray-100/80 to-gray-200/80 backdrop-blur-sm z-10"></div>
-                      <div className="relative z-20 text-center py-6">
-                        <div className="text-4xl mb-3">🔒</div>
-                        <p className="text-gray-700 font-semibold mb-2">Subscribe to Unlock</p>
-                        <p className="text-gray-600 text-sm">{seed.title}</p>
+                    <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-5 shadow-sm border-2 border-dashed border-gray-300 relative overflow-hidden min-h-[200px] flex items-center justify-center">
+                      <div className="text-center py-4">
+                        <div className="text-5xl mb-3 opacity-40">🔒</div>
+                        <p className="text-gray-800 font-bold mb-1.5 text-sm">Subscribe to Unlock</p>
+                        <p className="text-gray-600 text-xs leading-relaxed px-2">{seed.title}</p>
                       </div>
                     </div>
                   ) : (
                     // Unlocked Card
                     <motion.div
-                      whileHover={{ scale: 1.02, y: -4 }}
-                      className="bg-white rounded-xl p-5 shadow-md hover:shadow-xl transition-all cursor-pointer border-2 border-transparent hover:border-amber-300"
+                      whileHover={{ scale: 1.02, y: -2 }}
+                      className="bg-white rounded-xl p-5 shadow-md hover:shadow-xl transition-all cursor-pointer border border-gray-200 hover:border-amber-400 min-h-[200px] flex flex-col"
                       onClick={() => setFlippedCard(flippedCard === seed.id ? null : seed.id)}
                     >
                       {flippedCard === seed.id ? (
                         // Card Back - Expanded View
-                        <div className="space-y-3">
-                          <div className="flex items-center justify-between">
-                            <h4 className="text-lg font-bold text-gray-900">{seed.title}</h4>
+                        <div className="space-y-3.5 flex-1 flex flex-col">
+                          <div className="flex items-start justify-between gap-2">
+                            <h4 className="text-base font-bold text-gray-900 leading-tight flex-1">{seed.title}</h4>
                             <button
                               onClick={(e) => {
                                 e.stopPropagation()
                                 setFlippedCard(null)
                               }}
-                              className="text-gray-500 hover:text-gray-700"
+                              className="text-gray-400 hover:text-gray-700 text-xl leading-none flex-shrink-0 w-6 h-6 flex items-center justify-center"
                             >
                               ✕
                             </button>
                           </div>
-                          <p className="text-gray-700 text-sm">{seed.description}</p>
-                          <div>
-                            <p className="font-semibold text-gray-900 text-sm mb-1">What You&apos;ll Need:</p>
+                          <p className="text-gray-700 text-sm leading-relaxed">{seed.description}</p>
+                          <div className="flex-1">
+                            <p className="font-bold text-gray-900 text-xs uppercase tracking-wide mb-2">What You&apos;ll Need:</p>
                             <ul className="text-gray-600 text-sm space-y-1">
                               {seed.materials.map((material, idx) => (
-                                <li key={idx}>• {material}</li>
+                                <li key={idx} className="flex items-start gap-2">
+                                  <span className="text-amber-600 flex-shrink-0">•</span>
+                                  <span>{material}</span>
+                                </li>
                               ))}
                             </ul>
                           </div>
                           <div>
-                            <p className="font-semibold text-gray-900 text-sm mb-1">How to Play:</p>
-                            <p className="text-gray-600 text-sm">{seed.instructions}</p>
+                            <p className="font-bold text-gray-900 text-xs uppercase tracking-wide mb-2">How to Play:</p>
+                            <p className="text-gray-600 text-sm leading-relaxed">{seed.instructions}</p>
                           </div>
                         </div>
                       ) : (
                         // Card Front - Preview
-                        <div>
-                          <div className="flex items-center justify-between mb-3">
-                            <span className="text-3xl">{seed.icon}</span>
-                            <div className="flex gap-2">
-                              <span className="text-xs px-2 py-1 bg-amber-100 text-amber-800 rounded-full font-medium">
+                        <div className="flex flex-col h-full">
+                          <div className="flex items-start justify-between mb-3">
+                            <span className="text-4xl">{seed.icon}</span>
+                            <div className="flex flex-col gap-1.5 items-end">
+                              <span className="text-[10px] px-2 py-0.5 bg-amber-100 text-amber-800 rounded-md font-bold uppercase tracking-wide">
                                 {seed.type}
                               </span>
-                              <span className="text-xs px-2 py-1 bg-blue-100 text-blue-800 rounded-full font-medium flex items-center gap-1">
-                                <Clock className="w-3 h-3" />
+                              <span className="text-[10px] px-2 py-0.5 bg-blue-100 text-blue-800 rounded-md font-bold uppercase tracking-wide flex items-center gap-1">
+                                <Clock className="w-2.5 h-2.5" />
                                 {seed.time}
                               </span>
                             </div>
                           </div>
-                          <h4 className="text-base font-bold text-gray-900 mb-2">{seed.title}</h4>
-                          <p className="text-gray-600 text-sm">{seed.description}</p>
-                          <p className="text-amber-600 text-sm font-medium mt-3">Tap to expand →</p>
+                          <h4 className="text-sm font-bold text-gray-900 mb-2 leading-tight">{seed.title}</h4>
+                          <p className="text-gray-600 text-xs leading-relaxed mb-3 flex-1">{seed.description}</p>
+                          <div className="pt-2 border-t border-gray-100">
+                            <p className="text-amber-600 text-xs font-bold flex items-center gap-1">
+                              Tap to expand
+                              <span className="text-base">→</span>
+                            </p>
+                          </div>
                         </div>
                       )}
                     </motion.div>
