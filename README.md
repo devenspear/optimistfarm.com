@@ -1,123 +1,156 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Optimist Farm
+
+An interactive digital storybook platform that brings character-driven stories to life for young readers and their families.
+
+## About the Project
+
+Optimist Farm is a Next.js-based web application featuring interactive children's books with engaging animations, tap-to-discover moments, and family activities. The platform currently features **Bunny's Thank-You Garden**, a story about gratitude and patience featuring Barnaby Bunny and friends.
+
+### Key Features
+
+**Interactive Reading Experience**
+- Full-screen immersive reader with tap-to-play animations
+- Cozy narration with read-along functionality
+- Seek-and-find game (spot Pippin the Snail on every page!)
+- Page-turn animations and interactive story elements
+
+**Book Hub Dashboard**
+- Story Seeds: Parent activities to bring story themes to life
+- Filtering by activity type (craft, game, conversation) and duration
+- Expandable activity cards with materials and instructions
+- Mobile-optimized layout for iPad and tablet reading
+
+**Recent Updates (Oct 31, 2024)**
+- Streamlined Book Hub layout for better iPad viewing
+- Updated book cover imagery to BB1.png
+- Added shimmer animation to "Read Together Now" button
+- Restructured header hierarchy with book title prominence
+- Condensed left column to maximize Story Seeds visibility
+
+## Tech Stack
+
+- **Framework:** Next.js 15.5.2 (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS with custom animations
+- **Animations:** Framer Motion
+- **Fonts:** Custom Google Fonts (Baloo, Bubblegum, Fredoka)
+- **Deployment:** Vercel
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
+- Node.js 18+
+- npm, yarn, pnpm, or bun
+
+### Installation
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/devenspear/optimistfarm.com.git
+cd OptimistFarm1.1
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Run the development server:
+```bash
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Open [http://localhost:3002](http://localhost:3002) (or the assigned port) in your browser.
 
-## Learn More
+### Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+app/
+├── page.tsx                    # Home page with book library
+├── books/
+│   └── bunnys-garden/
+│       ├── page.tsx           # Book Hub with Story Seeds
+│       └── read/
+│           └── page.tsx       # Interactive reader
+public/
+├── Images/
+│   ├── BB1.png               # Book cover image
+│   └── ...                   # Story page illustrations
+tailwind.config.js            # Custom animations & theme
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Available Books
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Bunny's Thank-You Garden
+**Themes:** Gratitude, Patience
+**Character:** Barnaby Bunny
+**Story Seeds:** 6 family activities (3 unlocked, 3 premium)
 
-## Deploy on Vercel
+**Activities Include:**
+- The "Thank You" Jar (10-min craft)
+- Gratitude Scavenger Hunt (5-min game)
+- "What Made You Smile Today?" (1-min conversation)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Development
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Scripts
 
-## url1234.com Subdomain Operations
+```bash
+npm run dev      # Start development server
+npm run build    # Build for production
+npm run start    # Start production server
+npm run lint     # Run ESLint
+```
 
-The `url1234.com` domain is managed inside the Vercel team `deven-projects`. Two key subdomains are:
+### Custom Animations
 
-- `bunny-garden.url1234.com` → serves the Bunny's Garden interactive book (deployment `url1234-<hash>-deven-projects.vercel.app`).
-- `homebuilderai.url1234.com` → serves the HomeBuilder AI app (deployment `homebuilder-<hash>-deven-projects.vercel.app`).
+The project uses custom Tailwind animations defined in `tailwind.config.js`:
+- `shimmer` - 3s gradient sweep effect
+- `bounce-gentle` - 2s gentle bounce
+- `pulse-gentle` - 3s soft pulse
 
-### Prerequisite Configuration
+## Deployment
 
-Create or update `.env.local` (and mirror the values in the Vercel project environment) with:
+This project is deployed on Vercel and accessible at:
+- **Production:** https://optimistfarm.com
+- **Book Hub:** https://optimistfarm.com/books/bunnys-garden
+- **Reader:** https://optimistfarm.com/books/bunnys-garden/read
+
+### Environment Variables
+
+For Vercel deployment automation, configure:
 
 ```
 VERCEL_TOKEN=your-vercel-api-token
-VERCEL_TEAM_ID=team_IK60qekHHQDbJtujh7udLJj5
-BASE_DOMAIN=url1234.com
+VERCEL_TEAM_ID=your-team-id
+BASE_DOMAIN=optimistfarm.com
 ```
 
-Where to find these values:
+## Design Philosophy
 
-- `VERCEL_TOKEN`: Generate a token from the Vercel dashboard (`Account Settings → Tokens`). Grant at least the `deployments.write` scope. Store it as an environment variable (never check it into git).
-- `VERCEL_TEAM_ID`: Open any project in the `deven-projects` team and copy the `teamId` parameter from the URL (format `team_...`). It is also visible via `vercel teams inspect`.
-- `BASE_DOMAIN`: The parent domain managed inside the team, currently `url1234.com`. Change it only if you migrate to a different apex domain.
+Optimist Farm creates a cozy, engaging reading experience that:
+- Encourages parent-child interaction through Story Seeds
+- Teaches character values (gratitude, patience, kindness) through story
+- Provides multi-sensory engagement with animations and narration
+- Offers flexible reading modes (independent or guided)
 
-After editing `.env.local`, restart the dev server so Next.js picks up the new values. In Vercel, add the same keys under **Project → Settings → Environment Variables**.
+## Future Roadmap
 
-### Common Failure: 404 DEPLOYMENT_NOT_FOUND
+- Additional interactive books featuring farm characters
+- Premium Story Seeds subscription tier
+- Progress tracking and reading achievements
+- Mobile app versions (iOS/Android)
+- Character-specific activity collections
 
-If `https://homebuilderai.url1234.com` (or another subdomain) returns a Vercel 404 with `x-vercel-error: DEPLOYMENT_NOT_FOUND`, the domain is pointed at the wrong project/deployment. This recently happened because `homebuilderai.url1234.com` was still aliased to the `url1234-com` project instead of the new `homebuilder-ai` project.
+## Contributing
 
-### How to Diagnose
+This is a private project by Nancy Jo Spear and Deven Spear. For inquiries, please contact through the website.
 
-1. Confirm the CLI scope and credentials:
-   ```bash
-   vercel whoami
-   ```
-2. List the alias bindings and check the `source` deployment for the hostname:
-   ```bash
-   vercel alias ls | grep homebuilderai
-   ```
-   A healthy binding shows the HomeBuilder deployment as the source (e.g. `homebuilder-hr8uchuzv-deven-projects.vercel.app`).
-3. Inspect the deployment if needed:
-   ```bash
-   vercel inspect homebuilderai.url1234.com
-   ```
-   Verify the `Aliases` block lists the hostname under the expected deployment.
+## License
 
-### How to Fix
+Copyright © 2024 Optimist Farm. All rights reserved.
 
-1. Remove the stale alias (safe; it only removes the hostname mapping):
-   ```bash
-   vercel alias rm homebuilderai.url1234.com --yes
-   ```
-2. Point the hostname at the intended deployment:
-   ```bash
-   vercel alias set homebuilder-<deployment-id>.vercel.app homebuilderai.url1234.com
-   ```
-   Replace `<deployment-id>` with the current production deployment for the HomeBuilder AI project. You can list recent production deployments with:
-   ```bash
-   vercel list homebuilder-ai --environment production
-   ```
-3. Verify:
-   ```bash
-   curl -I https://homebuilderai.url1234.com
-   ```
-   Expect a 200-series status or the project's intended response (HomeBuilder AI currently returns `401` while its auth wall is enabled).
+---
 
-### Preventative Tips
-
-- After promoting a new HomeBuilder AI deployment, re-run the `vercel alias set` command to ensure the alias tracks the latest build.
-- Keep `*.url1234.com` assigned only to the project responsible for wildcard subdomain routing (currently `url1234-com`). Dedicated apps like HomeBuilder AI should bind their exact subdomain to their own project.
-- Document the latest deployment hash in the project tracker so team members know which source ID to alias if a rollback or reassignment is needed.
-
-## Admin Automation
-
-Visit `/admin` (e.g. `https://url1234.com/admin`) to access the Subdomain Admin panel. It lets you enter a subdomain, the target Vercel project slug, and calls the Vercel API to add that domain to the project. Once added, every future production deployment receives the domain automatically—no manual aliasing required.
-
-### Adding New Subdomains on Demand
-
-1. Deploy or link the new application as its own Vercel project (GitHub pushes trigger deployments).
-2. Open `/admin`, supply the new subdomain (or full domain) plus the project slug, and submit.
-3. Verify the success message, then confirm with `curl -I https://newsub.url1234.com`.
-
-### Security Notes
-
-- Protect `/admin` when running in production—e.g. via Vercel password protection, a shared-secret check, or edge middleware.
-- Keep `VERCEL_TOKEN`, `VERCEL_TEAM_ID`, and `BASE_DOMAIN` stored server-side only.
+**Built with Claude Code** 🤖
